@@ -12,7 +12,7 @@ class KaryawanController extends Controller
     
     public function index() {
         $karyawan = Karyawan::where('active',1)->get();
-        return view('karyawan.index',['karyawan' =>$karyawan]);
+        return view('karyawan',['karyawan' =>$karyawan]);
     }
     public function getdetails(Request $request) {
         $karyawan = Karyawan::find($request->id_karyawan);
@@ -32,7 +32,7 @@ class KaryawanController extends Controller
             return redirect('/karyawan/create') //returnnya nge save
             ->with('status','karyawan dengan nama '.$request->get('nama').' sudah berhasil tersimpan');
 
-    	// $kr = new Karyawan();
+     //    $kr = new Karyawan();
      //    $kr->nama = $request->nama;
      //    $kr->jabatan = $request->jabatan;
      //    $kr->alamat = $request->alamat;
