@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 Route::get('bahanbaku', 'productController@index')->name('showallbb');
 Route::post('getdetails_bb', 'productController@getdetails')->name('getdetails_bb');
