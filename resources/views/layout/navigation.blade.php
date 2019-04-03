@@ -111,18 +111,27 @@
         <i class="mdi menu-icon"></i>
       </a>
     </li>
+    <!-- mesin -->
     <li class="nav-item">
-      <a class="nav-link" href="{{route('showaddmesin')}}">
+      <a class="nav-link" href="{{route('mesin')}}">
         <!-- <span class="menu-title"> -->
-        Tambah Mesin
+        Mesin
         <!-- </span> -->
         <i class="mdi menu-icon"></i>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{route('showallmesin')}}">
+      <a class="nav-link" href="{{route('inputmesin')}}">
         <!-- <span class="menu-title"> -->
-        Seluruh Mesin
+        Input Mesin
+        <!-- </span> -->
+        <i class="mdi menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('editmesin')}}">
+        <!-- <span class="menu-title"> -->
+        Update Mesin
         <!-- </span> -->
         <i class="mdi menu-icon"></i>
       </a>
