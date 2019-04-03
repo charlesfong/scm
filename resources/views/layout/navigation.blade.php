@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
-      <a href="#" class="nav-link">
+      <a href="{{url('/')}}" class="nav-link">
         <div class="nav-profile-text d-flex flex-column">
           <span class="font-weight-bold mb-2">Tes User</span>
           <span class="text-secondary text-small">Ini Rolenya</span>
@@ -42,7 +42,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{route('showaddbarangjadi')}}">
         <!-- <span class="menu-title"> -->
-        Tambah Bahan Jadi
+        Tambah Barang Jadi
         <!-- </span> -->
         <i class="mdi menu-icon"></i>
       </a>
@@ -50,7 +50,7 @@
     <li class="nav-item">
       <a class="nav-link" href="">
         <!-- <span class="menu-title"> -->
-        Seluruh Bahan Jadi
+        Seluruh Barang Jadi
         <!-- </span> -->
         <i class="mdi menu-icon"></i>
       </a>

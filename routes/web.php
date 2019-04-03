@@ -52,6 +52,7 @@ Route::post('getdetails_order', 'orderController@getdetails')->name('getdetails_
 Route::get('spk', 'spkController@index')->name('showallspk');
 Route::get('inputspk', 'spkController@showinput')->name('showaddspk');
 Route::post('storespk', 'spkController@storespk')->name('storespk');
+Route::post('storebom', 'spkController@storebom')->name('storebom');
 
 Route::get('barangjadi', 'barangjadiController@index')->name('showallbarangjadi');
 Route::get('inputbarangjadi', 'barangjadiController@showinput')->name('showaddbarangjadi');
