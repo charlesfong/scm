@@ -20,25 +20,25 @@ class KaryawanController extends Controller
     }
     public function store(KaryawanFormRequest $request){
 
-        $karyawan = new Karyawan(
-            array(
-                'nama' => $request ->get('nama'),
-                'jabatan' => $request->get('stok'),
-                'alamat' => $request->get('alamat'),
-                'telepon' => $request->get('telepon')
-            )
-        );
-            $karyawan->save();
-            return redirect('/karyawan/create') //returnnya nge save
-            ->with('status','karyawan dengan nama '.$request->get('nama').' sudah berhasil tersimpan');
-
-     //    $kr = new Karyawan();
-     //    $kr->nama = $request->nama;
-     //    $kr->jabatan = $request->jabatan;
-     //    $kr->alamat = $request->alamat;
-     //    $kr->telepon = $request->no_telp;
-     //    $kr->save();
-     //    return redirect(route('showallkaryawan'));
+        // $karyawan = new Karyawan(
+        //     array(
+        //         'nama' => $request ->get('nama'),
+        //         'jabatan' => $request->get('stok'),
+        //         'alamat' => $request->get('alamat'),
+        //         'telepon' => $request->get('telepon')
+        //     )
+        // );
+        //     $karyawan->save();
+        //     return redirect('/karyawan/create') //returnnya nge save
+        //     ->with('status','karyawan dengan nama '.$request->get('nama').' sudah berhasil tersimpan');
+        $kr = new Karyawan();
+        $kr->nama = $request->nama;
+        $kr->jabatan = $request->jabatan;
+        $kr->alamat = $request->alamat;
+        $kr->telepon = $request->no_telp;
+        $kr->save();
+        return redirect(route('showallkaryawan'));
+        
     }
 
     public function show($id)

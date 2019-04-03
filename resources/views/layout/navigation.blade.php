@@ -111,5 +111,21 @@
         <i class="mdi menu-icon"></i>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('showaddmesin')}}">
+        <!-- <span class="menu-title"> -->
+        Tambah Mesin
+        <!-- </span> -->
+        <i class="mdi menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('showallmesin')}}">
+        <!-- <span class="menu-title"> -->
+        Seluruh Mesin
+        <!-- </span> -->
+        <i class="mdi menu-icon"></i>
+      </a>
+    </li>
   </ul>
 </nav>
