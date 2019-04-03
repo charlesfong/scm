@@ -14,6 +14,7 @@
           <tr>
             <th>ID</th>
             <th>Nama</th>
+            <td></td>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
           <tr>
             <td>{{ $msn->id_mesin }}</td>
             <td>{{ $msn->nama }}</td>
+            <td><a href="{{url('/hapusmesin/'.$msn->id_mesin.'')}}">hapus</a></td>
           </tr>
           @endforeach
         </tbody>
