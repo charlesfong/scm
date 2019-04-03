@@ -44,3 +44,10 @@ Route::post('storespk', 'spkController@storespk')->name('storespk');
 Route::get('barangjadi', 'barangjadiController@index')->name('showallbarangjadi');
 Route::get('inputbarangjadi', 'barangjadiController@showinput')->name('showaddbarangjadi');
 Route::post('storebarangjadi', 'barangjadiController@storebarangjadi')->name('storebarangjadi');
+
+Route::get('mesin', 'MesinController@index')->name('showallmesin');
+Route::get('inputmesin', 'MesinController@showinput')->name('showaddmesin');
+Route::post('storemesin', 'MesinController@storemesin')->name('storemesin');
+Route::post('/delete/', 'MesinController@delete')->name('delete_mesin');
+Route::post('update_mesin', 'MesinController@update')->name('updatemesin');
+Route::post('getdetails_mesin', 'MesinController@getdetails')->name('getdetails_mesin');

@@ -15,7 +15,7 @@
                     <label class="col-md-1 control-label">Id SPK</label>
                     <div class="col-md-11 inputGroupContainer">
                        <div class="input-group"><span class="input-group-addon"></span>
-                        <select name="spk" class="form-control">
+                        <select name="spk_id_spk" class="form-control">
                           <option disabled selected value> -- Pilih SPK -- </option>
                           @foreach($spk as $spkz)
                           <option value="{{$spkz->id_spk}}">{{$spkz->id_spk}}</option>
@@ -26,7 +26,7 @@
                  <div class="form-group">
                     <label class="col-md-1 control-label">Nama</label>
                     <div class="col-md-11 inputGroupContainer">
-                       <div class="input-group"><span class="input-group-addon"></span><input name="nama" class="form-control" required="true" value="" type="number"></div>
+                       <div class="input-group"><span class="input-group-addon"></span><input name="nama" class="form-control" required="true" value="" type="text"></div>
                     </div>
                  </div>                 
               </fieldset>

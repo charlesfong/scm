@@ -91,7 +91,6 @@
                 for (var i = 0; i < data.length; i++) {
                   $('#list_barang').append('<tr><td><input class="form-control" value="'+data[i]['kode_barang']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['nama_barang']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['unit_pemesanan']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['jumlah']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['satuan']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['harga_satuan']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['keterangan']+'" type="text" disabled="disabled"></td></tr>');
                 }
-                
                 // $("#modal-view").modal("show");
             },
         });

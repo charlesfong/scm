@@ -16,7 +16,8 @@ use App\spk;
 class barangjadiController extends Controller
 {
     public function index() {
-        return view('barangjadi');
+        $bjadi = barangjadi::all();
+        return view('barangjadi',compact('bjadi'));
     }
     public function showinput() {
     	$bjadi = barangjadi::all();
@@ -24,10 +25,10 @@ class barangjadiController extends Controller
         return view('inputbarangjadi',compact('bjadi','spk'));
     }
     public function storebarangjadi(request $request) {
-    	$bb = new barangjadi();
-        $bb->nama = $request->spk;
-        $bb->harga = $request->nama;
-        $bb->save();
-        return redirect(route('barangjadi'));
+    	$bjadi = new barangjadi();
+        $bjadi->spk_id_spk = $request->spk_id_spk;
+        $bjadi->nama = $request->nama;
+        $bjadi->save();
+        return redirect(route('showallbarangjadi'));
     }
 }

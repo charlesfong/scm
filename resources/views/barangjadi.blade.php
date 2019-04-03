@@ -18,11 +18,11 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($karyawans as $kary)
+          @foreach($bjadi as $val)
           <tr>
-            <td>{{ $kary->jabatan}}</td>
-            <td>{{ $kary->alamat}}</td>
-            <td>{{ $kary->telepon}}</td>
+            <td>{{ $val->id_barang_jadi}}</td>
+            <td>{{ $val->spk_id_spk}}</td>
+            <td>{{ $val->nama}}</td>
           </tr>
           @endforeach
         </tbody>
