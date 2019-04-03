@@ -14,7 +14,7 @@ class MesinController extends Controller
         return view('mesin',compact('mesins'));
     }
     public function storemesin(request $request) {
-        $mesin = new Mesin();
+    	$mesin = new Mesin();
         $mesin->nama = $request->nama_mesin;
         $mesin->save();
         return redirect(route('showallmesin'));
