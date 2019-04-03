@@ -72,9 +72,17 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{route('supplier')}}">
+      <a class="nav-link" href="{{route('showallsupplier')}}">
         <!-- <span class="menu-title"> -->
-        List Supplier
+        Seluruh Supplier
+        <!-- </span> -->
+        <i class="mdi menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('showaddsupplier')}}">
+        <!-- <span class="menu-title"> -->
+        Tambah Supplier
         <!-- </span> -->
         <i class="mdi menu-icon"></i>
       </a>
