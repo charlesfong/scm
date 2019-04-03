@@ -66,7 +66,7 @@
     <li class="nav-item">
       <a class="nav-link" href="{{route('inputstokbb')}}">
         <!-- <span class="menu-title"> -->
-        Ubah Stok Bahan Baku
+        Seluruh Bahan Baku
         <!-- </span> -->
         <i class="mdi menu-icon"></i>
       </a>

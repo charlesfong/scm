@@ -62,7 +62,6 @@
         <!-- //Modal content-->
     </div>
 </div>
-<<<<<<< HEAD
 <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -104,7 +103,6 @@
         <!-- //Modal content-->
     </div>
 </div>
-=======
 
 @section('script')
 

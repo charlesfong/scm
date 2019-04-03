@@ -13,8 +13,8 @@
         <thead>
           <tr>
             <th>Order Id</th>
-            <th>Customer Id</th>
-            <th>Karyawan Id</th>
+            <th>Customer</th>
+            <th>Karyawan</th>
             <th>Tanggal</th>
             <th>View</th>
           </tr>

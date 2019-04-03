@@ -12,7 +12,7 @@ use App\customer;
 class customerController extends Controller
 {
     public function index() {
-        $customers = customer::all();
+        $customers = customer::where('active',1)->get();
         return view('customer',compact('customers'));
     }
     public function showinput() {
@@ -71,9 +71,9 @@ class customerController extends Controller
         $customer->save();
         return redirect(route("showallcustomer"));
     }
-
-    public function showinput() {
-        return view('inputcustomer');
+    public function getdetails(Request $request) {
+        $customer = customer::find($request->id_customer);
+        return response()->json(['result' => $customer]);
     }
 
 }

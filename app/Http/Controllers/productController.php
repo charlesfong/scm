@@ -11,7 +11,8 @@ use App\bahanbaku;
 class productController extends Controller
 {
     public function index() {
-        return view('product');
+        $bb=bahanbaku::where('active',1)->get();
+        return view('product',compact('bb'));
     }
     public function showaddbahanbaku() {
     	$supplierz = supplier::all();
@@ -26,7 +27,7 @@ class productController extends Controller
         return view('product');
     }
     public function showinputstokbahanbaku() {
-    	$bb = bahanbaku::all();
+    	$bb = bahanbaku::where('active',1)->get();
     	$supplierz = supplier::all();
         return view('inputstokbahanbaku',compact('bb','supplierz'));
     }
@@ -41,5 +42,26 @@ class productController extends Controller
             }
         }
         return redirect(route('inputstokbb'));
+    }
+    public function showinput() {
+        return view('inputmesin');
+    }
+    public function delete(Request $request) {
+        $bb = bahanbaku::find($request->id_bahan_baku);
+        $bb->active = false;
+        $bb->save();
+        return redirect(route("inputstokbb"));
+    }
+    public function getdetails(Request $request) {
+        $bb = bahanbaku::find($request->id_bahan_baku);
+        return response()->json(['result' => $bb]);
+    }
+    public function update(Request $request)
+    {
+        $bb = bahanbaku::find($request->id_bahan_baku);
+        $bb->nama = $request->nama;
+        $bb->harga = $request->harga;
+        $bb->save();
+        return redirect(route("inputstokbb"));
     }
 }

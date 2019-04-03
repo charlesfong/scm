@@ -14,7 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('bahanbaku', 'productController@index')->name('showallbb');
+Route::post('getdetails_bb', 'productController@getdetails')->name('getdetails_bb');
+Route::post('update_bb', 'productController@update')->name('updatebb');
+Route::post('/delete_bb/', 'productController@delete')->name('delete_bb');
 Route::get('showaddbahanbaku', 'productController@showaddbahanbaku')->name('inputbb');
 Route::post('storebahanbaku', 'productController@storebahanbaku')->name('storebahanbaku');
 Route::get('inputstokbahanbaku', 'productController@showinputstokbahanbaku')->name('inputstokbb');
@@ -30,6 +33,9 @@ Route::post('/delete_supplier/', 'supplierController@delete')->name('delete_supp
 Route::get('customer', 'customerController@index')->name('showallcustomer');
 Route::get('inputcustomer', 'customerController@showinput')->name('showaddcustomer');
 Route::post('storecustomer', 'customerController@storecustomer')->name('storecustomer');
+Route::post('getdetails_customer', 'customerController@getdetails')->name('getdetails_customer');
+Route::post('update_customer', 'customerController@update')->name('updatecustomer');
+Route::post('/delete_customer/', 'customerController@delete')->name('delete_customer');
 
 Route::get('karyawan', 'karyawanController@index')->name('showallkaryawan');
 Route::get('inputkaryawan', 'karyawanController@showinput')->name('showaddkaryawan');

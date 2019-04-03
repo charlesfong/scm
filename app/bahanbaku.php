@@ -9,5 +9,5 @@ class bahanbaku extends Model
 	public $timestamps = false;
     protected $table = 'bahan_baku';
     protected $primaryKey='id_bahan_baku';
-    protected $fillable=['nama','stok','harga','supplier_id_supplier'];
+    protected $fillable=['nama','stok','harga','satuan','supplier_id_supplier'];
 }
