@@ -14,11 +14,7 @@
           <tr>
             <th>ID</th>
             <th>Nama</th>
-<<<<<<< HEAD
             <th>Edit/Delete</th>
-=======
-            <th>Delete</th>
->>>>>>> b7f74564ee1bc9bf272e57965f121c1618ccc84a
           </tr>
         </thead>
         <tbody>
@@ -27,11 +23,8 @@
             <td>{{ $msn->id_mesin }}</td>
             <td>{{ $msn->nama }}</td>
             <td style="text-align: center;">
-<<<<<<< HEAD
                 <span><button type="button" data-toggle="modal" data-target="#modal-edit" 
                 class="btn btn-primary btn-sm btn-edit" value="{{$msn->id_mesin}}"><i class="fa fa-edit"></i></button></span>&nbsp;
-=======
->>>>>>> b7f74564ee1bc9bf272e57965f121c1618ccc84a
                 <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_mesin', ['id_mesin' => $msn->id_mesin])}}"><i class="fa fa-trash-o"></i></button></span>
             </td>
           </tr>
