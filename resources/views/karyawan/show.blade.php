@@ -1,27 +1,39 @@
 @extends('layout.layout')
 @section('content')
-<h1>	Detail Supplier</h1>
-<table>	
-		<tr>	
-				<td>	Nama</td>
-				<td>	{{$karyawan->nama}}</td>
-		</tr>
-		<tr>	
-				<td>	Alamat</td>
-				<td>	{{$karyawan->alamat}}</td>
-		</tr>
-		<tr>	
-				<td colspan="2"><a href="	{{url('/karyawan/')}}">[BACK]</a>	</td>
-		</tr>
-</table>
-<form method="post" action="{!! action('KaryawanController@destroy', $karyawan->id) !!}" class="pull-left">
-	<input type="hidden" name="_method" value="DELETE">
-<input type="hidden" name="_token" value="{!! csrf_token() !!}">
-<div class="form-group">
-  <div>
-    <button type="submit" class="btn btn-warning">Delete</button>
+<div class="page-header">
+<h3 class="page-title">
+  Data Karyawan {{ $karyawan->nama}}
+</h3>
+</div>
+<div class="row">
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id Karyawan</th>
+            <th>Nama</th>
+            <th>Alamat</th>
+            <th>Jabatan</th>
+            <th>Telepon</th>
+            <th> </th>
+          </tr>
+        </thead>
+        <tbody>
+         
+          <tr>
+            <td>{{ $karyawan->id}}</td>
+            <td>{{ $karyawan->nama}}</td>
+            <td>{{ $karyawan->alamat}}</td>
+            <td>{{ $karyawan->jabatan}}</td>
+            <td>{{ $karyawan->telepon}}</td>
+            <td><a href="	{{url('/karyawan/')}}">[BACK]</a>	</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
-</form>
-<div class="clearfix"></div>
 @endsection
