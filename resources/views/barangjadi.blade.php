@@ -1,11 +1,11 @@
 @extends('layout.layout')
 @section('content')
 <div class="page-header">
-<h3 class="page-title">
+<h3 class="page-title" style="position:fixed;">
   List Barang Jadi
 </h3>
 </div>
-<div class="row">
+<div class="row" style="position:fixed;">
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">

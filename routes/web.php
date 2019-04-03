@@ -26,8 +26,11 @@ Route::get('inputcustomer', 'customerController@showinput')->name('showaddcustom
 Route::post('storecustomer', 'customerController@storecustomer')->name('storecustomer');
 Route::get('karyawan', 'karyawanController@index')->name('showallkaryawan');
 Route::get('inputkaryawan', 'karyawanController@showinput')->name('showaddkaryawan');
+Route::post('getdetails', 'karyawanController@getdetails')->name('getdetails');
 Route::post('storekaryawan', 'karyawanController@storekaryawan')->name('storekaryawan');
-Route::get('order', 'orderController@index')->name('showallorder');
+Route::post('update', 'karyawanController@update')->name('updatekaryawan');
+Route::post('/delete/', 'karyawanController@delete')->name('delete_karyawan');
+Route::get('order', 'orderController@orderlist')->name('showallorder');
 Route::get('inputorder', 'orderController@showinput')->name('showaddorder');
 Route::post('storeorder', 'orderController@storeorder')->name('storeorder');
 Route::get('spk', 'spkController@index')->name('showallspk');

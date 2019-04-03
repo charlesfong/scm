@@ -13,7 +13,7 @@ use App\karyawan;
 
 class orderController extends Controller
 {
-    public function index() {
+    public function orderlist() {
         $orders = order::all();
         return view('order',compact('orders'));
     }

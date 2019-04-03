@@ -9,36 +9,15 @@ use App\Karyawan;
 
 class KaryawanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index() {
-
-        $karyawan = Karyawan::all();
-        return view('karyawan.index',['karyawan' =>$karyawan]);
-        // $karyawan = karyawan::all();
-        // return view('karyawan',compact('karyawans'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('karyawan.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http/KaryawanFormRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     
+    public function index() {
+        $karyawan = Karyawan::where('active',1)->get();
+        return view('karyawan.index',['karyawan' =>$karyawan]);
+    }
+    public function getdetails(Request $request) {
+        $karyawan = Karyawan::find($request->id_karyawan);
+        return response()->json(['result' => $karyawan]);
+    }
     public function store(KaryawanFormRequest $request){
 
         $karyawan = new Karyawan(
@@ -62,24 +41,12 @@ class KaryawanController extends Controller
      //    return redirect(route('showallkaryawan'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $karyawan = Karyawan::whereId($id)->firstOrFail();
         return view('karyawan.show', ['karyawan' =>$karyawan]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $karyawan = Karyawan::whereId($id)->firstOrFail();
@@ -87,38 +54,18 @@ class KaryawanController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-     public function update(KaryawanFormRequest $request, $id)
+     public function update(Request $request)
     {
-        // $jurusan = new Jurusan(
-        //     array(
-        //         'nama' => $request ->get('nama'),
-        //         'deskripsi' => $request->get('deskripsi')
-        //     )
-        // );
-        $karyawan = Karyawan::whereId($id)->firstOrFail();
-
-        $karyawan->nama = $request->get('nama');
-        $karyawan->jabatan = $request->get('jabatan');
-        $karyawan->alamat = $request->get('alamat');
+        $karyawan = Karyawan::find($request->id_karyawan);
+        $karyawan->nama = $request->nama;
+        $karyawan->jabatan = $request->jabatan;
+        $karyawan->alamat = $request->alamat;
+        $karyawan->telepon = $request->telepon;
         $karyawan->save();
-        // return redirect(action('jurusans/'.$jurusan->id.'/edit', $jurusan->id))->with('status', 'Jurusan dengan id '.$id.' telah berhasil diubah!');
-        return view('karyawan.show', ['karyawan' =>$karyawan])->with('status', 'Karyawan dengan id '.$id.' telah berhasil diubah!');
-        // return view('karyawan.index', ['karyawan' =>$karyawan])->with('status', 'Karyawan dengan id '.$id.' telah berhasil diubah!');
+        return redirect(route("showallkaryawan"));
 
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $karyawan = Karyawan::whereId($id)->firstOrFail();
@@ -127,6 +74,12 @@ class KaryawanController extends Controller
 
     }
     
+    public function delete(Request $request) {
+        $karyawan = Karyawan::find($request->id_karyawan);
+        $karyawan->active = false;
+        $karyawan->save();
+        return redirect(route("showallkaryawan"));
+    }
 
     public function showinput() {
         return view('inputkaryawan');
