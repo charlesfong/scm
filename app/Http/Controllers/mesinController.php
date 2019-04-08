@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\KaryawanFormRequest;
 use App\Mesin;
 use Illuminate\Support\Facades\File;
 class mesinController extends Controller
@@ -23,7 +25,6 @@ class mesinController extends Controller
             if (!is_dir("sources/mesin")) {
                 File::makeDirectory("sources/mesin", $mode = 0777, true, true);
             }
-
             $pathForImage = "sources/mesin";
             $file->move($pathForImage, $filename);
         }
