@@ -55,4 +55,9 @@ class spkController extends Controller
         
         return redirect(route('showallspk'));
     }
+
+    public function checkSPK(request $request)
+    {
+        
+    }
 }

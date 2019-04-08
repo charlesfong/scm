@@ -9,12 +9,20 @@
                     <label class="col-md-1 control-label">Customer</label>
                     <div class="col-md-11 inputGroupContainer">
                        <div class="input-group"><span class="input-group-addon"></span>
-                        <select name="customer" class="form-control">
+                        <select name="customer" id="cust_opt" class="form-control">
                           <option selected="selected" disabled="disabled">Pilih Customer</option>
                           @foreach ($customer as $cust)
                             <option value="{{$cust->id_customer}}">{{$cust->nama}}</option>
                           @endforeach
                         </select>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="form-group">
+                    <label class="col-md-1 control-label">Unit Pemesanan</label>
+                    <div class="col-md-11 inputGroupContainer">
+                       <div class="input-group"><span class="input-group-addon"></span>
+                        <input type="text" id="unit_pemesanan" disabled="disabled" class="form-control">
                        </div>
                     </div>
                  </div>
@@ -57,6 +65,12 @@
                               Harga Satuan
                             </th>
                             <th>
+                              Alamat Pengiriman
+                            </th>
+                            <th>
+                              Biaya Transport
+                            </th>
+                            <th>
                               Keterangan
                             </th>
                           </tr>
@@ -82,12 +96,12 @@
         if (iCnt==0)
         {
             iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="text" placeholder="satuan"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="alamat_pengiriman[]" class="form-control" required="true" value="" type="text" placeholder="alamat pengiriman"></td><td><input name="biaya_transport[]" class="form-control" required="true" value="" type="number" placeholder="biaya transport" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
         }
         
             $('#btAdd').click(function() {
                 iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="text" placeholder="satuan"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="alamat_pengiriman[]" class="form-control" required="true" value="" type="text" placeholder="alamat pengiriman"></td><td><input name="biaya_transport[]" class="form-control" required="true" value="" type="number" placeholder="biaya transport" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
         });
         
         $('#btRemove').click(function() {
@@ -96,6 +110,25 @@
             {
                 alert("Tidak bisa menghapus, minimal barang harus 1");
             }            
+        });
+        $('#cust_opt').change(function(){
+          var id = $(this).val();
+          $.ajax({
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              type: 'post',
+              url: "{{route('getdetails_customer')}}",
+              data: {
+                  'id_customer': id,
+                  _token: '{!! csrf_token() !!}'
+              },
+              success: function (data) {
+                  var data = data['result'];
+                  var unit = data['unit'];
+                  $("#unit_pemesanan").val(unit);
+              },
+          });
         });
     });
 </script>

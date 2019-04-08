@@ -3,14 +3,14 @@
     <li class="nav-item nav-profile">
       <a href="{{url('/')}}" class="nav-link">
         <div class="nav-profile-text d-flex flex-column">
-          <span class="font-weight-bold mb-2">Tes User</span>
-          <span class="text-secondary text-small">Ini Rolenya</span>
+          <!-- <span class="font-weight-bold mb-2">Tes User</span> -->
+          <!-- <span class="text-secondary text-small">Ini Rolenya</span> -->
         </div>
-        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        <!-- <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i> -->
       </a>
     </li>
     
-    
+    <div style="position:fixed;">
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-title">Order</span>
@@ -214,5 +214,6 @@
         </ul>
       </div>
     </li>
+    </div>
   </ul>
 </nav>
