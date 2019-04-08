@@ -45,11 +45,11 @@ class progressController extends Controller
     }
     public function showdetailprogress(request $request){
     	$spks		= spk::all();
-    	$pros 		= Progress::all();
+    	$pros 		= Progress::find($request->no_dokumen)->first();
     	$order_d 	=Order_detail::all();
     	$mesins 	= mesin::all();
         $karyawans	= karyawan::all();
-    	$pros_d = ProgressDetail::where('no_dokumen',$request->no_dokumen)->get();
+    	$pros_d = ProgressDetail::where('no_dokumen',$request->no_dokumen)->where('active',1)->get();
     	return view('progressdetail',compact('pros','spks','order_d','pros_d','mesins','karyawans'));
     }
     public function storeprogress(request $request){
@@ -79,10 +79,10 @@ class progressController extends Controller
     	return response()->json(['result' => $pros]);
     }
     public function deleteprogressdetail(request $request){
-    	$pros = Progress::find($request->id);
+    	$pros = ProgressDetail::find($request->id);
         $pros->active = false;
         $pros->save();
-        return response()->json(['result' => "oke"]);
+        return response()->json(['result' => "Data terhapus"]);
     }
     public function updateprogress(request $request){
     	dd($request);

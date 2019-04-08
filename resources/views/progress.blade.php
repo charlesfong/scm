@@ -143,7 +143,7 @@
         $("#frmDelete").attr("action",  $(this).val());
     });
     $(".btn-view").click(function(e) {
-        window.location.href = "{{route('showdetailprogress', ['no_dokumen' => '"+$(this).val()+"'])}}";
+        window.location.href = "{{route('showdetailprogress', ['no_dokumen' => "$(this).val()"])}}";
     });
     $(".btn-edit").click(function (e) {
         var id = $(this).val();

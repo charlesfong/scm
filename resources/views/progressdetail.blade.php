@@ -2,7 +2,7 @@
 @section('content')
 <div class="page-header">
 <h3 class="page-title">
-  Daftar Detail Progress Dari Progress Produksi 
+  Daftar Detail Progress Dari Progress Produksi Dengan No Dokumen : {{$pros->no_dokumen}}
 </h3>
 </div>
 <div class="row">
@@ -47,7 +47,7 @@
             <td style="text-align: center;">
                 <button type="button" data-toggle="modal" data-target="#modal-edit" 
                 class="btn btn-primary btn-sm btn-edit" value="{{$pro->id}}"><i class="fa fa-edit"></i></button></span>&nbsp;
-                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_progress_detail', ['id' => {{$pro->id}}])}}"><i class="fa fa-trash-o"></i></button></span>
+                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('deleteprogressdetail', ['id' => $pro->id])}}"><i class="fa fa-trash-o"></i></button></span>
             </td>
           </tr>
           @endforeach

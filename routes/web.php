@@ -75,3 +75,4 @@ Route::post('storeprogress', 'progressController@storeprogress')->name('storepro
 Route::post('detailprogress', 'progressController@detailprogress')->name('detailprogress');
 Route::post('updateprogress', 'progressController@updateprogress')->name('updateprogress');
 Route::get('showdetailprogress', 'progressController@showdetailprogress')->name('showdetailprogress');
+Route::post('deleteprogressdetail', 'progressController@deleteprogressdetail')->name('deleteprogressdetail');
