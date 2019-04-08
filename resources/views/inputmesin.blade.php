@@ -18,6 +18,12 @@
                     </div>
                  </div>
                  <div class="form-group">
+                    <label class="col-md-2 control-label">Tanggal Beli</label>
+                    <div class="col-md-11 inputGroupContainer">
+                       <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="tgl_beli" name="tgl_beli" class="form-control" required="true" value="" type="date"></div>
+                    </div>
+                 </div>
+                 <div class="form-group">
                     <span>Upload foto mesin</span>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 imgUp" style="margin-top: 0.5em;">
                     <!-- <input id="gambars" class="form-control" type="file" name="arr_image" multiple> -->

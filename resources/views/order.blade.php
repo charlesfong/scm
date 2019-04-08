@@ -16,7 +16,8 @@
             <th>Customer</th>
             <th>Karyawan</th>
             <th>Tanggal</th>
-            <th>View</th>
+            <th>View Order Detail</th>
+            <th>View SPK</th>
           </tr>
         </thead>
         <tbody>
@@ -38,7 +39,8 @@
             @endforeach
             </td>
             <td>{{ $order->tanggal}}</td>
-            <td><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$order->tanggal}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
+            <td style="text-align: center;"><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$order->tanggal}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
+            <td style="text-align: center;"><button type="button" class="btn btn-danger btn-sm btn-view" value="{{$order->tanggal}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
           </tr>
           @endforeach
         </tbody>

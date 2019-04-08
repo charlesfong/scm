@@ -14,6 +14,7 @@
           <tr>
             <th>ID</th>
             <th>Nama</th>
+            <th>Tanggal Beli</th>
             <th>View/Edit/Delete</th>
           </tr>
         </thead>
@@ -22,6 +23,7 @@
           <tr>
             <td>{{ $msn->id_mesin }}</td>
             <td>{{ $msn->nama }}</td>
+            <td>{{ $msn->tanggal_beli }}</td>
             <td style="text-align: center;">
                 <button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$msn->id_mesin}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button>
                 <span><button type="button" data-toggle="modal" data-target="#modal-edit" 
@@ -111,6 +113,13 @@
                               <strong></strong>
                           </span>
                       </div>
+                      <div class="form-group">
+                          <span>Tanggal Beli</span>
+                          <input id="edit-tgl_beli" type="date" name="tgl_beli" class="form-control"  value="" required>
+                          <span class="invalid-feedback">
+                              <strong></strong>
+                          </span>
+                      </div>
                     </div>
                     <div class="modal-footer" style="margin-top: 40px;">
                         <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
@@ -172,8 +181,10 @@
             success: function (data) {
                 var data = data['result'];
                 var nama = data['nama'];
+                var tgl_beli = data['tanggal_beli'];
                 $("#edit-id").val(id);
                 $("#edit-nama").val(nama);
+                $("#edit-tgl_beli").val(tgl_beli);
             },
         });
     });

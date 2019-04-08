@@ -11,6 +11,6 @@ class Mesin extends Model
     protected $table = 'mesin';
     protected $primaryKey='id_mesin';
     public $timestamps = false; //artinya ndak da created_at sm updated_at
-    protected $fillable = ['nama','image'];
+    protected $fillable = ['nama','image','tanggal_beli'];
 
 }

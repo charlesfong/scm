@@ -53,7 +53,7 @@ class mesinController extends Controller
     public function storemesin(request $request) {
         $mesin = new Mesin();
         $mesin->nama = $request->nama_mesin;
-
+        $mesin->tanggal_beli = $request->tgl_beli;
         if ($request->has('image')){
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
@@ -85,6 +85,7 @@ class mesinController extends Controller
     {
         $mesin = Mesin::find($request->id_mesin);
         $mesin->nama = $request->nama;
+        $mesin->tanggal_beli = $request->tgl_beli;
         $mesin->save();
         return redirect(route("showallmesin"));
     }
