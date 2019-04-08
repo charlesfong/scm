@@ -59,19 +59,19 @@
         if (iCnt==0)
         {
             iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number"></td><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
         }
         
             $('#btAdd').click(function() {
                 iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number"></td><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
         });
         
         $('#btRemove').click(function() {
             if (iCnt != 1) { $('#' + iCnt).remove(); iCnt = iCnt - 1; }
             else if (iCnt ==1)
             {
-                alert("Tidak bisa menghapus, minimal misi harus 1");
+                alert("Tidak bisa menghapus, minimal barang harus 1");
             }            
         });
     });
