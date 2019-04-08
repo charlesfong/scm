@@ -134,4 +134,9 @@ class productController extends Controller
         $nb->save();
         return redirect(route("inputstokbb"));
     }
+    public function getdetailpermintaanbb(request $request)
+    {
+        $PBB = PermintaanBB::find(0);
+        return response()->json(['result' => $PBB]);
+    }
 }

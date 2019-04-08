@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class nota_beli extends Model
+class Notabeli extends Model
 {
 	public $timestamps = false;
     protected $table = 'nota_beli';

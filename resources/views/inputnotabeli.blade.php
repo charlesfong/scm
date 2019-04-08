@@ -45,7 +45,7 @@
                           @foreach ($pbb as $data)
                             <option value="{{$data->no_permintaan_bahan}}">{{$data->no_permintaan_bahan}}</option>
                           @endforeach
-                        </select>
+                        </select><button type="button" class="btn btn-secondary btn-sm btn-view"><i class="fa fa-eye"></i></button>
                        </div>
                     </div>
                  </div>
@@ -53,7 +53,7 @@
                     <label class="col-md-1 control-label">Total</label>
                     <div class="col-md-11 inputGroupContainer">
                        <div class="input-group"><span class="input-group-addon"></span>
-                        <input type="number" id="Total" name="harga_total" class="form-control" readonly="">
+                        <input type="number" id="Total" name="harga_total" class="form-control" readonly>
                        </div>
                     </div>
                 </div>                 
@@ -114,7 +114,16 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                    
+                No Permintaan Bahan : <p id="id_modal"> </p><br>
+                Id Bahan Baku       : <p id="id_bb_modal"> </p><br>
+                Id SPK              : <p id="id_spk_modal"> </p><br>
+                Tanggal             : <p id="tanggal_modal"> </p><br>
+                No Revisi           : <p id="rev_modal"> </p><br>
+                Jenis               : <p id="jenis_modal"> </p><br>
+                Jumlah              : <p id="jumlah_modal"> </p><br>
+                Harga Satuan        : <p id="harga_modal"> </p><br>
+                Total Harga         : <p id="total_modal"> </p><br>
+                Keterangan          : <p id="ket_modal"> </p><br>
                 <div class="clearfix"></div>
             </div>
             <div class="modal-footer">
@@ -137,23 +146,33 @@
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                   },
                   type: 'post',
-                  url: "{{route('bbdetail')}}",
+                  url: "{{route('getdetailpermintaanbb')}}",
                   data: {
-                      'id_bb': id,
+                      'id': id,
                       _token: '{!! csrf_token() !!}'
                   },
                   success: function (data) {
                       var data = data['result'];
-                      sisa     = data['stok'];
-                      $("#sisa_stok").val(sisa);
-                      $("#modal-view").modal("show");
+                      $("#id_modal").html(data['no_permintaan_bahan']);
+                      $("#id_bb_modal").html(data['bahan_baku_id_bahan_baku']);
+                      $("#id_spk_modal").html(data['spk_id_spk']);
+                      $("#tanggal_modal").html(data['tanggal']);
+                      $("#rev_modal").html(data['no_revisi']);
+                      $("#jenis_modal").html(data['jenis']);
+                      $("#jumlah_modal").html(data['jumlah']);
+                      $("#harga_modal").html(data['harga_satuan']);
+                      $("#total_modal").html(data['total_harga']);
+                      $("#ket_modal").html(data['keterangan']);
+                      $("#Total").val(data['total_harga']);
                   },
               });
             });
             
         });
 
-
+        $('.btn-view').click(function(){
+            $("#modal-view").modal("show");
+        });
 
         var iCnt = 0;
         if (iCnt==0)
@@ -174,7 +193,6 @@
                 alert("Tidak bisa menghapus, minimal barang harus 1");
             }            
         });
-    });
 </script>
 
 @endsection
