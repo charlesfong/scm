@@ -69,11 +69,8 @@ Route::post('/delete_mesin/', 'MesinController@delete')->name('delete_mesin');
 Route::post('update_mesin', 'MesinController@update')->name('updatemesin');
 Route::post('getdetails_mesin', 'MesinController@getdetails')->name('getdetails_mesin');
 
-
-//mesin
-
-// Route::get('inputmesin', 'mesinController@create')->name('inputmesin');
-// Route::post('storemesin', 'mesinController@store')->name('storemesin');
-// Route::get('editmesin', 'mesinController@edit')->name('editmesin');
-// Route::post('updatemesin', 'mesinController@update')->name('updatemesin');
-// Route::get('hapusmesin/{id}', 'mesinController@destroy')->name('hapusmesin');
+Route::get('showprogress', 'progressController@showprogress')->name('showprogress');
+Route::get('showinputprogress', 'progressController@showinputprogress')->name('showinputprogress');
+Route::post('storeprogress', 'progressController@storeprogress')->name('storeprogress');
+Route::post('detailprogress', 'progressController@detailprogress')->name('detailprogress');
+Route::post('updateprogress', 'progressController@updateprogress')->name('updateprogress');

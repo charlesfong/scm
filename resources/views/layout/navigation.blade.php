@@ -64,6 +64,49 @@
       </div>
     </li>
     <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basica" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-title">Progress Produksi</span>
+        <i class="menu-arrow"></i>
+        <!-- <i class="mdi mdi-crosshairs-gps menu-icon"></i> -->
+      </a>
+      <div class="collapse" id="ui-basica">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('showprogress')}}">
+              <!-- <span class="menu-title"> -->
+              Seluruh Progress
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('showinputprogress')}}">
+              <!-- <span class="menu-title"> -->
+              Tambah Progress
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('showallkaryawan')}}">
+              <!-- <span class="menu-title"> -->
+              Seluruh Detail Progress
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('showaddkaryawan')}}">
+              <!-- <span class="menu-title"> -->
+              Tambah Detail Progress
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic5" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-title">Produk</span>
         <i class="menu-arrow"></i>
