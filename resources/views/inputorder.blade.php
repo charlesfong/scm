@@ -31,24 +31,47 @@
                        </div>
                     </div>
                  </div>
-
-                    <label class="col-md-1 control-label">List Barang :</label>
-                    <table class="table table-bordered" style="border: 1px solid">
-                            <span id="list_barang"></span>
-                            <!-- <tr>
-                                <td>asdf</td>
-                                <td>asdf</td>
-                                <td>asdf</td>
-                                <td>asdf</td>
-                                <td>asdf</td>
-                                <td>asdf</td>
-                                <td>asdf</td>
-                            </tr>   -->      
-                    </table><br>
+                 <div class="col-lg-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">List Barang</h4>
+                      <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th>
+                              Kode Barang
+                            </th>
+                            <th>
+                              Nama Barang
+                            </th>
+                            <th>
+                              Unit Pemesanan
+                            </th>
+                            <th>
+                              Jumlah
+                            </th>
+                            <th>
+                              Satuan
+                            </th>
+                            <th>
+                              Harga Satuan
+                            </th>
+                            <th>
+                              Keterangan
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="list_barang">
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <br>
                 <input type="button" id="btAdd" value="Tambah Barang" class="btn btn-success btn-sm" />
                 <input type="button" id="btRemove" value="Hapus Barang Terahkir" class="btn btn-danger btn-sm" />
                 <input type="submit" value="simpan" name="simpan" class="btn btn-success btn-sm" style="float: right;" />
-              
            </form>
 @section('script')
 
@@ -59,12 +82,12 @@
         if (iCnt==0)
         {
             iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
         }
         
             $('#btAdd').click(function() {
                 iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><input name="kodebarang[]" placeholder="Kode barang" class="form-control" required="true" value="" type="text"></td><td><input name="namabarang[]" placeholder="Nama barang" class="form-control" required="true" value="" type="text"></td><td><input name="unitpemesanan[]" placeholder="Unit Pemesanan" class="form-control" required="true" value="" type="number" MIN="1"></td><td><input name="jumlah[]" class="form-control" required="true" value="" type="number" placeholder="jumlah" MIN="1"></td><td><input name="satuan[]" class="form-control" required="true" value="" type="number" placeholder="satuan" MIN="1"></td><td><input name="hargasatuan[]" class="form-control" required="true" value="" type="number" placeholder="harga satuan" MIN="1"></td><td><input name="keterangan[]" placeholder="Keterangan" class="form-control" required="true" value="" type="text"></td></tr>');
         });
         
         $('#btRemove').click(function() {
