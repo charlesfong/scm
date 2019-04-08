@@ -9,6 +9,7 @@ use App\supplier;
 use App\bahanbaku;
 use App\customer;
 use App\order;
+use App\Order_detail;
 use App\karyawan;
 use App\spk;
 use App\bom;
@@ -19,11 +20,15 @@ class spkController extends Controller
         $spks = spk::all();
         return view('spk',compact('spks'));
     }
-    public function showinput() {
+    public function showinput(request $request) {
     	$customer=customer::all();
     	$karyawan=karyawan::all();
         $bb=bahanbaku::where('active',1)->get();
-    	$orders=order::all();
+    	$orders=Order_detail::all();
+        if ($request->has('detail_order_id')) {
+            $orders = Order_detail::where('id',$request->detail_order_id)->get();      
+        }
+
         return view('inputspk',compact('customer','karyawan','orders','bb'));
     }
     public function storespk(request $request){
@@ -58,6 +63,19 @@ class spkController extends Controller
 
     public function checkSPK(request $request)
     {
-        
+        $check=spk::where('order_detail_id',$request->id)->exists();
+        return response()->json(['result' => $check]);
+    }
+
+    public function detailSPK(request $request)
+    {
+        if ($request->has('detail_order_id')) {      
+            $spks = spk::where('order_detail_id',$request->detail_order_id)->first();
+        }
+        $order=order::where('id_order',$request->detail_order_id)->first();
+        $order_d=Order_detail::find($request->detail_order_id)->first();
+        $cust=customer::find($order->customer_id_customer)->first();
+        $kary=karyawan::find($order->karyawan_id_karyawan)->first();
+        return view('detailspk',compact('spks','cust','order_d','kary','order'));
     }
 }

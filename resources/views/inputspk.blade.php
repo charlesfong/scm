@@ -18,7 +18,7 @@
                         <select id="order_id" name="order" class="form-control">
                           <option selected="selected" disabled="disabled">Pilih Order</option>
                           @foreach ($orders as $order)
-                            <option value="{{$order->id_order}}">{{$order->kode_barang}}-{{$order->nama_barang}}</option>
+                            <option value="{{$order->id}}">{{$order->kode_barang}}-{{$order->nama_barang}}--Order Id : {{$order->id_order}}</option>
                           @endforeach
                         </select>
                        </div>

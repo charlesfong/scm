@@ -72,8 +72,34 @@
 @section('script')
 
 <script type="text/javascript">
+    var detail_order_id="<?php echo (isset($_GET["detail_order_id"]) ? "detail_order_id=".$_GET["detail_order_id"] : "") ?>";
     $(document).on('click', '.button-spk', function(){
-        
+        var id = $(this).val();
+        detail_order_id = $(this).val();
+        console.log(detail_order_id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: "{{route('checkSPK')}}",
+            data: {
+                'id': id,
+                _token: '{!! csrf_token() !!}'
+            },
+            success: function (data) {
+                var data = data['result'];
+                if (data)
+                {
+                  window.location.href = "{{ route('detailSPK') }}" + mergeUrlParam();
+                }
+                else
+                {
+                  window.location.href = "{{ route('showaddspk') }}" + mergeUrlParam();
+                }
+            },
+        });
+
     });
 
     $(".btn-view").click(function (e) {
@@ -99,6 +125,23 @@
             },
         });
     });
+
+    function mergeUrlParam(){
+        
+        var urlParamArray = new Array();
+        var urlParamStr = "";
+        if (detail_order_id!=="") {
+            urlParamArray.push(detail_order_id);
+        }
+        for (var i = 0; i < urlParamArray.length; i++) {
+            if (i === 0) {
+                urlParamStr += "?detail_order_id=" + urlParamArray[i]
+            } else {
+                urlParamStr += "&" + urlParamArray[i]
+            }
+        }
+        return urlParamStr;
+    }
 </script>
 
 @endsection
