@@ -10,6 +10,7 @@ use App\supplier;
 use App\bahanbaku;
 use App\PermintaanBB;
 use App\PenggunaanBB;
+use App\Notabeli;
 
 class productController extends Controller
 {
@@ -114,6 +115,23 @@ class productController extends Controller
         $PBB->sisa_stok_sementara       = $request->sisa_stok;
         $PBB->stok_opname               = $request->stok_opname;
         $PBB->save();
+        return redirect(route("inputstokbb"));
+    }
+    public function showinputnotabeli()
+    {
+        $suppliers  = supplier::all();
+        $pbb        = PermintaanBB::all();
+        return view('inputnotabeli',compact('pbb','suppliers'));
+    }
+    public function storenotabeli(request $request)
+    {
+        $nb = new Notabeli();
+        $nb->no_nota                                    = $request->nomornota;
+        $nb->tanggal                                    = $request->tanggal;
+        $nb->harga_total                                = $request->harga_total;
+        $nb->permintaan_bahan_baku_no_permintaan_bahan  = $request->pbb;
+        $nb->supplier_id_supplier                       = $request->supplier;
+        $nb->save();
         return redirect(route("inputstokbb"));
     }
 }

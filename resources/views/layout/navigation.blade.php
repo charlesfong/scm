@@ -154,6 +154,14 @@
               <i class="mdi menu-icon"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('showinputnotabeli')}}">
+              <!-- <span class="menu-title"> -->
+              Nota Beli
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </li>
