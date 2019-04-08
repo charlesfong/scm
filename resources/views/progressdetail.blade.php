@@ -19,16 +19,36 @@
             <th>Tanggal Progress</th>
             <th>Hasil</th>
             <th>Keterangan</th>
+            <th style="text-align: center;">Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($pros as $key=>$pro)
+          @foreach($pros_d as $key=>$pro)
           <tr>
             <td>{{ $key+1 }}</td>
-            <td>{{ $pro->no_dokumen}}</td>
-            <td>{{ $pro->tgl_buat}}</td>
-            <td>{{ $pro->no_revisi}}</td>
-            <td>{{ $pro->id_spk}}</td>
+            <td>
+            @foreach($karyawans as $kary)
+              @if($kary->id_karyawan==$pro->id_karyawan)
+                {{$kary->nama}}
+              @endif
+            @endforeach
+            </td>
+            <td>
+            @foreach($mesins as $mesin)
+              @if($mesin->id_mesin==$pro->id_mesin)
+                {{$mesin->nama}}
+              @endif
+            @endforeach
+            </td>
+            <td>{{ $pro->tanggal_rencana}}</td>
+            <td>{{ $pro->tanggal_progress}}</td>
+            <td>{{ $pro->hasil}}</td>
+            <td>{{ $pro->keterangan}}</td>
+            <td style="text-align: center;">
+                <button type="button" data-toggle="modal" data-target="#modal-edit" 
+                class="btn btn-primary btn-sm btn-edit" value="{{$pro->id}}"><i class="fa fa-edit"></i></button></span>&nbsp;
+                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_progress_detail', ['id' => {{$pro->id}}])}}"><i class="fa fa-trash-o"></i></button></span>
+            </td>
           </tr>
           @endforeach
         </tbody>
@@ -136,6 +156,7 @@
     $(".btn-delete").click(function(e) {
         $("#frmDelete").attr("action",  $(this).val());
     });
+
     $(".btn-edit").click(function (e) {
         var id = $(this).val();
         $.ajax({

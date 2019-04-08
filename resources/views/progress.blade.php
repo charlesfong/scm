@@ -29,7 +29,7 @@
             <td>{{ $pro->no_revisi}}</td>
             <td>{{ $pro->id_spk}}</td>
             <td style="text-align: center;">
-                <span><button type="button" class="btn btn-secondary btn-sm btn-edit" value=""><i class="fa fa-eye"></i></button></span>&nbsp;
+                <span><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$pro->no_dokumen}}"><i class="fa fa-eye"></i></button></span>&nbsp;
                 <span>
                 <button type="button" data-toggle="modal" data-target="#modal-edit" 
                 class="btn btn-primary btn-sm btn-edit" value="{{$pro->no_dokumen}}"><i class="fa fa-edit"></i></button></span>&nbsp;
@@ -141,6 +141,9 @@
 <script type="text/javascript">
     $(".btn-delete").click(function(e) {
         $("#frmDelete").attr("action",  $(this).val());
+    });
+    $(".btn-view").click(function(e) {
+        window.location.href = "{{route('showdetailprogress', ['no_dokumen' => '"+$(this).val()+"'])}}";
     });
     $(".btn-edit").click(function (e) {
         var id = $(this).val();

@@ -74,3 +74,4 @@ Route::get('showinputprogress', 'progressController@showinputprogress')->name('s
 Route::post('storeprogress', 'progressController@storeprogress')->name('storeprogress');
 Route::post('detailprogress', 'progressController@detailprogress')->name('detailprogress');
 Route::post('updateprogress', 'progressController@updateprogress')->name('updateprogress');
+Route::get('showdetailprogress', 'progressController@showdetailprogress')->name('showdetailprogress');
