@@ -53,7 +53,7 @@
 $(function() {
     $(document).on("change",".uploadFile", function()
     {
-        console.log('zxv');
+        
         var uploadFile = $(this);
         var files = !!this.files ? this.files : [];
         if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
@@ -64,6 +64,7 @@ $(function() {
  
             reader.onloadend = function(){ // set image data as background of div
                 //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+                console.log('zxv');
                 uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
             }
         }

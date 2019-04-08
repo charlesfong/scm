@@ -11,20 +11,7 @@
             
             {{ csrf_field() }}
               <fieldset>
-                 <div class="form-group">
-                    <label class="col-md-1 control-label">Tanggal Rencana</label>
-                    <div class="col-md-11 inputGroupContainer">
-                       <div class="input-group"><span class="input-group-addon"></span>
-                          <input name="tgl_rencana" class="form-control" required="true" value="" type="date">
-                       </div>
-                    </div>
-                 </div>
-                 <div class="form-group">
-                    <label class="col-md-1 control-label">Tanggal Progress</label>
-                    <div class="col-md-11 inputGroupContainer">
-                       <div class="input-group"><span class="input-group-addon"></span><input name="tgl_progress" class="form-control" value="" type="date"></div>
-                    </div>
-                 </div>
+                 
                  <div class="form-group">
                     <label class="col-md-1 control-label">No Dokumen</label>
                     <div class="col-md-11 inputGroupContainer">
@@ -61,10 +48,24 @@
                          <option disabled="disabled" selected="selected">Pilih Karyawan</option>
                          @foreach ($karyawans as $karyawan)
                             <option value="{{$karyawan->id_karyawan}}">
-                              {{karyawan->nama}}
+                              {{$karyawan->nama}}
                             </option>
                           @endforeach
                        </select></div>
+                    </div>
+                 </div>
+                 <div class="form-group">
+                    <label class="col-md-1 control-label">Tanggal Rencana</label>
+                    <div class="col-md-11 inputGroupContainer">
+                       <div class="input-group"><span class="input-group-addon"></span>
+                          <input name="tgl_rencana" class="form-control" required="true" value="" type="date">
+                       </div>
+                    </div>
+                 </div>
+                 <div class="form-group">
+                    <label class="col-md-1 control-label">Tanggal Progress</label>
+                    <div class="col-md-11 inputGroupContainer">
+                       <div class="input-group"><span class="input-group-addon"></span><input name="tgl_progress" class="form-control" value="" type="date"></div>
                     </div>
                  </div>
                  <div class="form-group">

@@ -24,7 +24,7 @@ class progressController extends Controller
         $mesins 	= mesin::where('active',1)->get();
         $karyawans	= karyawan::where('active',1)->get();
         $progress 	= Progress::all();
-        return view('inputprogress',compact('mesins','karyawans','progress'));
+        return view('inputprogressdetail',compact('mesins','karyawans','progress'));
     }
     public function storeprogressdetail(request $request){
     	$progress=new ProgressDetail();

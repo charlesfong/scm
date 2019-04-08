@@ -67,7 +67,7 @@
             <div class="modal-body">
 
                     <p style="text-align: center; color: black;">
-                        <strong id="model-change-status-questions">Hapus Progress ini?</strong>
+                        <strong id="model-change-status-questions">Hapus Detail Progress ini?</strong>
                     </p>
                 
                 <div class="clearfix"></div>
@@ -95,7 +95,7 @@
             <div class="modal-body">
 
                     <p style="text-align: center; color: black;">
-                        <strong id="model-change-status-questions">Edit Progress Produksi</strong>
+                        <strong id="model-change-status-questions">Edit Detail Progress Produksi</strong>
                     </p>
                 
                 <div class="clearfix"></div>
@@ -174,6 +174,7 @@
                 var id = data['no_dokumen'];
                 var no_revisi = data['no_revisi'];
                 var id_spk = data['id_spk'];
+                console.log(data);
                 $("#edit-id").val(id);
                 $("#edit-revisi").val(no_revisi);
                 $("#edit-spk").val(id_spk);

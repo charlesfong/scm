@@ -88,15 +88,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('showallkaryawan')}}">
-              <!-- <span class="menu-title"> -->
-              Seluruh Detail Progress
-              <!-- </span> -->
-              <i class="mdi menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('showaddkaryawan')}}">
+            <a class="nav-link" href="{{route('showinputprogressdetail')}}">
               <!-- <span class="menu-title"> -->
               Tambah Detail Progress
               <!-- </span> -->
