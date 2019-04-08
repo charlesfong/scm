@@ -14,7 +14,7 @@
           <tr>
             <th>ID</th>
             <th>Nama</th>
-            <th>Edit/Delete</th>
+            <th>View/Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +23,7 @@
             <td>{{ $msn->id_mesin }}</td>
             <td>{{ $msn->nama }}</td>
             <td style="text-align: center;">
+                <button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$msn->id_mesin}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button>
                 <span><button type="button" data-toggle="modal" data-target="#modal-edit" 
                 class="btn btn-primary btn-sm btn-edit" value="{{$msn->id_mesin}}"><i class="fa fa-edit"></i></button></span>&nbsp;
                 <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_mesin', ['id_mesin' => $msn->id_mesin])}}"><i class="fa fa-trash-o"></i></button></span>
@@ -35,6 +36,27 @@
   </div>
 </div>
 @endsection
+<div class="modal fade" id="modal-view" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="top: 30vh;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                    <div class="col-xs-12 col-sm-12 imgUp" style="padding-left: 0.5em;">
+                        <div class="imagePreview"></div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                
+                
+            </div>
+        </div>
+        <!-- //Modal content-->
+    </div>
+</div>
 <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -111,6 +133,29 @@
         $("#frmDelete").attr("action",  $(this).val());
     });
 
+    $(".btn-view").click(function (e) {
+        var id = $(this).val();
+        console.log(id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: "{{route('getdetails_mesin')}}",
+            data: {
+                'id_mesin': id,
+                _token: '{!! csrf_token() !!}'
+            },
+            success: function (data) {
+                var data = data['result'];
+                var image = data['image'];
+                // var image = data['image'].replace(new RegExp(' ', 'g'), "%20");
+                var urlNya = "<?php echo asset('sources/mesin/'); ?>";
+                $(".imgUp").find('.imagePreview').css("background-image", "url("+urlNya+"/"+image+")");
+            },
+        });
+    });
+
     $(".btn-edit").click(function (e) {
         var id = $(this).val();
         console.log(id);
@@ -125,7 +170,6 @@
                 _token: '{!! csrf_token() !!}'
             },
             success: function (data) {
-                console.log(data);
                 var data = data['result'];
                 var nama = data['nama'];
                 $("#edit-id").val(id);

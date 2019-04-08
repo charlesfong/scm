@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mesin;
-
+use Illuminate\Support\Facades\File;
 class mesinController extends Controller
 {
     // public function create()
@@ -53,6 +53,18 @@ class mesinController extends Controller
     public function storemesin(request $request) {
         $mesin = new Mesin();
         $mesin->nama = $request->nama_mesin;
+
+        if ($request->has('image')){
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $mesin->image = $filename;
+            if (!is_dir("sources/mesin")) {
+                File::makeDirectory("sources/mesin", $mode = 0777, true, true);
+            }
+
+            $pathForImage = "sources/mesin";
+            $file->move($pathForImage, $filename);
+        }
         $mesin->save();
         return redirect(route('showallmesin'));
     }

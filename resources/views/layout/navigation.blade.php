@@ -196,17 +196,17 @@
       <div class="collapse" id="ui-basic1">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('showaddmesin')}}">
+            <a class="nav-link" href="{{route('showallmesin')}}">
               <!-- <span class="menu-title"> -->
-              Tambah Mesin
+              Seluruh Mesin
               <!-- </span> -->
               <i class="mdi menu-icon"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('showallmesin')}}">
+            <a class="nav-link" href="{{route('showaddmesin')}}">
               <!-- <span class="menu-title"> -->
-              Seluruh Mesin
+              Tambah Mesin
               <!-- </span> -->
               <i class="mdi menu-icon"></i>
             </a>

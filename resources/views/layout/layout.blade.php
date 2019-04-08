@@ -23,7 +23,20 @@
   position: relative;
   margin: 100px auto;
   }
-
+  .imagePreview {
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background:url(http://cliquecities.com/assets/no-image-e3699ae23f866f6cbdf8ba2443ee5c4e.jpg);
+    background-color:#fff;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: inline-block;
+  }
+  .imgUp
+  {
+    margin-bottom:15px;
+  }
   .double-bounce1, .double-bounce2 {
     width: 100%;
     height: 100%;
