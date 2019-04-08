@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\KaryawanFormRequest;
 use App\Mesin;
 use Illuminate\Support\Facades\File;
+
 class mesinController extends Controller
 {
     
