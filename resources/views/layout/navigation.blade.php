@@ -138,6 +138,14 @@
               <i class="mdi menu-icon"></i>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('showinputpermintaanbahanbaku')}}">
+              <!-- <span class="menu-title"> -->
+              Permintaan Bahan Baku
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </li>
