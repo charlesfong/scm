@@ -9,7 +9,7 @@ use App\spk;
 use App\supplier;
 use App\bahanbaku;
 use App\PermintaanBB;
-
+use App\PenggunaanBB;
 
 class productController extends Controller
 {
@@ -91,6 +91,28 @@ class productController extends Controller
         $PBB->harga_satuan              = $request->hargasatuan;
         $PBB->total_harga               = $request->total;
         $PBB->keterangan                = $request->keterangan;
+        $PBB->save();
+        return redirect(route("inputstokbb"));
+    }
+    public function showinputpenggunaanbahanbaku(request $request)
+    {
+        $spks = spk::all();
+        $bbs = bahanbaku::where('active',1)->get();
+        return view('penggunaanbb',compact('bbs','spks'));
+    }
+    public function storepenggunaanbahanbaku(request $request)
+    {
+        $PBB = new PenggunaanBB();
+        $PBB->no_penggunaan_bahan       = $request->id;
+        $PBB->bahan_baku_id_bahan_baku  = $request->id_bb;
+        $PBB->spk_id_spk                = $request->id_spk;
+        $PBB->no_revisi                 = $request->no_revisi;
+        $PBB->jenis                     = $request->jenis;
+        $PBB->jumlah_masuk              = $request->jumlah_masuk;
+        $PBB->jumlah_keluar             = $request->jumlah_keluar;
+        $PBB->tgl_keluar                = $request->tanggal_keluar;
+        $PBB->sisa_stok_sementara       = $request->sisa_stok;
+        $PBB->stok_opname               = $request->stok_opname;
         $PBB->save();
         return redirect(route("inputstokbb"));
     }

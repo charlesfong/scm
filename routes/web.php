@@ -25,6 +25,8 @@ Route::post('storestokbahanbaku', 'productController@storestokbahanbaku')->name(
 Route::get('showinputpermintaanbahanbaku', 'productController@showinputpermintaanbahanbaku')->name('showinputpermintaanbahanbaku');
 Route::post('bbdetail', 'productController@bbdetail')->name('bbdetail');
 Route::post('storepermintaanbahanbaku', 'productController@storepermintaanbahanbaku')->name('storepermintaanbahanbaku');
+Route::get('showinputpenggunaanbahanbaku', 'productController@showinputpenggunaanbahanbaku')->name('showinputpenggunaanbahanbaku');
+Route::post('storepenggunaanbahanbaku', 'productController@storepenggunaanbahanbaku')->name('storepenggunaanbahanbaku');
 
 Route::get('supplier', 'supplierController@index')->name('showallsupplier');
 Route::get('inputsupplier', 'supplierController@showinput')->name('showaddsupplier');
