@@ -17,6 +17,7 @@
             <th>Tanggal Pembuatan</th>
             <th>No Revisi</th>
             <th>Id SPK</th>
+            <th>Progress</th>
             <th style="text-align: center;">View/Edit/Delete</th>
           </tr>
         </thead>
@@ -28,6 +29,11 @@
             <td>{{ $pro->tgl_buat}}</td>
             <td>{{ $pro->no_revisi}}</td>
             <td>{{ $pro->id_spk}}</td>
+            <td>
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 11%"></div>
+              </div>
+            </td>
             <td style="text-align: center;">
                 <span><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$pro->no_dokumen}}"><i class="fa fa-eye"></i></button></span>&nbsp;
                 <span>

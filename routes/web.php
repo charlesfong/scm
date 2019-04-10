@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/', 'indexController@index')->name('index');
+
 Route::get('bahanbaku', 'productController@index')->name('showallbb');
 Route::post('getdetails_bb', 'productController@getdetails')->name('getdetails_bb');
 Route::post('update_bb', 'productController@update')->name('updatebb');
@@ -86,3 +86,4 @@ Route::get('showdetailprogress', 'progressController@showdetailprogress')->name(
 Route::post('deleteprogressdetail', 'progressController@deleteprogressdetail')->name('deleteprogressdetail');
 Route::get('showinputprogressdetail', 'progressController@showinputprogressdetail')->name('showinputprogressdetail');
 Route::post('storeprogressdetail', 'progressController@storeprogressdetail')->name('storeprogressdetail');
+Route::post('confirmprogressdetail', 'progressController@confirmprogressdetail')->name('confirmprogressdetail');

@@ -87,14 +87,14 @@
               <i class="mdi menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('showinputprogressdetail')}}">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="{{route('showinputprogressdetail')}}"> -->
               <!-- <span class="menu-title"> -->
-              Tambah Detail Progress
+              <!-- Tambah Detail Progress -->
               <!-- </span> -->
-              <i class="mdi menu-icon"></i>
-            </a>
-          </li>
+              <!-- <i class="mdi menu-icon"></i> -->
+            <!-- </a> -->
+          <!-- </li> -->
         </ul>
       </div>
     </li>

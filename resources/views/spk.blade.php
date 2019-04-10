@@ -12,23 +12,33 @@
       <table class="table">
         <thead>
           <tr>
-            <th>SPK Id</th>
-            <th>Order Id</th>
-            <th>Lama Kerja</th>
-            <th>Biaya</th>
-            <th>Lokasi Tempat Customer</th>
-            <th>Deskripsi</th>
+            <th style="text-align: center;">SPK Id</th>
+            <th style="text-align: center;">Order Detail Id</th>
+            <th style="text-align: center;">Tanggal Pembuatan SPK</th>
+            <th style="text-align: center;">Lama Kerja</th>
+            <th style="text-align: center;">Sisa Waktu Kerja</th>
+            <th style="text-align: center;">Biaya</th>
+            <th style="text-align: center;">Lokasi Tempat Customer</th>
+            <th style="text-align: center;">Deskripsi</th>
           </tr>
         </thead>
         <tbody>
           @foreach($spks as $spk)
           <tr>
-            <td>{{ $spk->id_spk}}</td>
-            <td>{{ $spk->order_id_order}}</td>
-            <td>{{ $spk->lama_kerja}}</td>
-            <td>{{ $spk->biaya}}</td>
-            <td>{{ $spk->lokasi_tempat_customer}}</td>
-            <td>{{ $spk->deskripsi}}</td>
+            <td style="text-align: center;">{{ $spk->id_spk}}</td>
+            <td style="text-align: center;">{{ $spk->order_detail_id}}</td>
+            <td style="text-align: center;">{{date('d F, Y', strtotime($spk->tanggal))}}</td>
+            <td style="text-align: center;">{{ $spk->lama_kerja}} Hari</td>
+            <td style="text-align: center;">
+            @if ((date('d', strtotime($spk->tanggal))+$spk->lama_kerja-date('d'))>=0)
+            {{ date('d', strtotime($spk->tanggal))+$spk->lama_kerja-date('d') }} Hari
+            @else
+            <label class="badge badge-danger">Waktu Habis</label>
+            @endif
+            </td>
+            <td style="text-align: center;">{{ $spk->biaya}}</td>
+            <td style="text-align: center;">{{ $spk->lokasi_tempat_customer}}</td>
+            <td style="text-align: center;">{{ $spk->deskripsi}}</td>
           </tr>
           @endforeach
         </tbody>

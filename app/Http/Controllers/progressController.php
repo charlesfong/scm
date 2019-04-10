@@ -36,7 +36,7 @@ class progressController extends Controller
     	$progress->hasil=$request->hasil;
     	$progress->keterangan=$request->keterangan;
     	$progress->save();
-    	return redirect(route('showinputprogressdetail'));
+    	return redirect(route('showdetailprogress', ['no_dokumen' => $progress->no_dokumen]));
     }
     public function showinputprogress() {
         $spks = spk::all();
@@ -46,10 +46,18 @@ class progressController extends Controller
     public function showdetailprogress(request $request){
     	$spks		= spk::all();
     	$pros 		= Progress::find($request->no_dokumen)->first();
-    	$order_d 	=Order_detail::all();
+    	$order_d 	= Order_detail::all();
     	$mesins 	= mesin::all();
         $karyawans	= karyawan::all();
     	$pros_d = ProgressDetail::where('no_dokumen',$request->no_dokumen)->where('active',1)->get();
+        foreach ($pros_d as $proz)
+        {
+            if ($proz->tanggal_rencana>=$proz->tanggal_progress && $proz->status=="New")
+            {
+                $proz->status="In progress";
+                $proz->save();
+            }
+        }
     	return view('progressdetail',compact('pros','spks','order_d','pros_d','mesins','karyawans'));
     }
     public function storeprogress(request $request){
@@ -72,7 +80,8 @@ class progressController extends Controller
     	$spks = spk::all();
     	$pros = Progress::all();
     	$order_d=Order_detail::all();
-    	return view('progress',compact('pros','spks','order_d'));
+        $pros_d=ProgressDetail::all();
+    	return view('progress',compact('pros','spks','order_d','pros_d'));
     }
     public function detailprogress(request $request){
     	$pros = Progress::find($request->id)->first();
@@ -82,7 +91,13 @@ class progressController extends Controller
     	$pros = ProgressDetail::find($request->id);
         $pros->active = false;
         $pros->save();
-        return response()->json(['result' => "Data terhapus"]);
+        return redirect(route('showdetailprogress', ['no_dokumen' => $pros->no_dokumen]));
+    }
+    public function confirmprogressdetail(request $request){
+        $pros = ProgressDetail::find($request->id);
+        $pros->status = "Done";
+        $pros->save();
+        return redirect(route('showdetailprogress', ['no_dokumen' => $pros->no_dokumen]));
     }
     public function updateprogress(request $request){
     	dd($request);
@@ -91,6 +106,6 @@ class progressController extends Controller
     	$progress->no_revisi=$request->no_revisi;
     	$progress->id_spk=$request->id_spk;
     	$progress->save();
-    	return redirect(route('showprogress'));
+    	return redirect(route('showdetailprogress'));
     }
 }

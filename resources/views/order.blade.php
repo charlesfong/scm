@@ -16,11 +16,12 @@
             <th>Customer</th>
             <th>Karyawan</th>
             <th>Tanggal</th>
+            <th style="text-align: center;">Status</th>
             <th style="text-align: center;">View Order Detail</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($orders as $order)
+          @foreach($orders as $key => $order)
           <tr>
             <td>{{ $order->id_order}}</td>
             <td>
@@ -37,7 +38,12 @@
               @endif
             @endforeach
             </td>
-            <td>{{ $order->tanggal}}</td>
+            <td>{{ $order->created_at}}</td>
+            <td style="text-align: center;">
+                @if ($order->status=="In progress")
+                <label class="badge badge-warning">In progress</label>
+                @endif
+            </td>
             <td style="text-align: center;"><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
           </tr>
           @endforeach
