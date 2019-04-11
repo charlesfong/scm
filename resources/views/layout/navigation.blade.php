@@ -106,16 +106,16 @@
       </a>
       <div class="collapse" id="ui-basic5">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="{{route('showaddbarangjadi')}}">
-              <!-- <span class="menu-title"> -->
+              <span class="menu-title">
               Tambah Barang Jadi
-              <!-- </span> -->
+              </span>
               <i class="mdi menu-icon"></i>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('showbarangjadi')}}">
               <!-- <span class="menu-title"> -->
               Seluruh Barang Jadi
               <!-- </span> -->

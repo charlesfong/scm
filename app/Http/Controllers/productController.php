@@ -8,6 +8,7 @@ use DB;
 use App\spk;
 use App\supplier;
 use App\bahanbaku;
+use App\barangjadi;
 use App\PermintaanBB;
 use App\PenggunaanBB;
 use App\Notabeli;
@@ -138,5 +139,11 @@ class productController extends Controller
     {
         $PBB = PermintaanBB::find(0);
         return response()->json(['result' => $PBB]);
+    }
+
+    public function showbarangjadi(request $request)
+    {
+        $barangjadi = barangjadi::all();
+        return view('barangjadi',compact('barangjadi'));
     }
 }

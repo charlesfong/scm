@@ -18,7 +18,7 @@
             <th>No Revisi</th>
             <th>Id SPK</th>
             <th>Progress</th>
-            <th style="text-align: center;">View/Edit/Delete</th>
+            <th style="text-align: center;">View/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -31,14 +31,32 @@
             <td>{{ $pro->id_spk}}</td>
             <td>
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 11%"></div>
+                <?php
+                  $max = 0;
+                  $cur = 0;
+                  foreach ($pros_d as $pro_d)
+                  {
+                      if ($pro_d->no_dokumen==$pro->no_dokumen)
+                      {
+                        $max++;
+                        if ($pro_d->status=="Done")
+                        {
+                          $cur++;
+                        }
+                      }
+                  }
+                  $percentage = ($cur/$max)*100;
+                ?>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{$percentage}}%"></div>
               </div>
+              <!-- <p style="text-align: center;"><?php echo $cur."/".$max;?></p> -->
             </td>
             <td style="text-align: center;">
                 <span><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$pro->no_dokumen}}"><i class="fa fa-eye"></i></button></span>&nbsp;
                 <span>
-                <button type="button" data-toggle="modal" data-target="#modal-edit" 
-                class="btn btn-primary btn-sm btn-edit" value="{{$pro->no_dokumen}}"><i class="fa fa-edit"></i></button></span>&nbsp;
+                <!-- <button type="button" data-toggle="modal" data-target="#modal-edit" 
+                class="btn btn-primary btn-sm btn-edit" value="{{$pro->no_dokumen}}"><i class="fa fa-edit"></i></button> -->
+                </span>&nbsp;
                 <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value=""><i class="fa fa-trash-o"></i></button></span>
             </td>
           </tr>
@@ -149,7 +167,7 @@
         $("#frmDelete").attr("action",  $(this).val());
     });
     $(".btn-view").click(function(e) {
-        window.location.href = "{{route('showdetailprogress', ['no_dokumen' => "$(this).val()"])}}";
+        window.location.href = "{{ route('showdetailprogress') }}" + "?no_dokumen=" + $(this).val();
     });
     $(".btn-edit").click(function (e) {
         var id = $(this).val();

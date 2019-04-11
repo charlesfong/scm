@@ -13,11 +13,15 @@ use App\Order_detail;
 use App\karyawan;
 use App\spk;
 use App\bom;
+use App\barangjadi;
 
 class spkController extends Controller
 {
-    public function index() {
+    public function index(request $request) {
         $spks = spk::all();
+        if ($request->has('detail_order_id')) {
+            $spks = spk::where('order_detail_id',$request->detail_order_id)->get();      
+        }
         return view('spk',compact('spks'));
     }
     public function showinput(request $request) {
@@ -33,18 +37,24 @@ class spkController extends Controller
     }
     public function storespk(request $request){
     	$spk = new spk();
-        $spk->order_id_order = $request->order;
-        $spk->lama_kerja = $request->lamakerja;
-        $spk->biaya = $request->biaya;
-        $spk->lokasi_tempat_customer = $request->lokasi;
-        $spk->deskripsi = $request->deskripsi;
+        $spk->order_detail_id           = $request->order;
+        $spk->lama_kerja                = $request->lamakerja;
+        $spk->biaya                     = $request->biaya;
+        $spk->lokasi_tempat_customer    = $request->lokasi;
+        $spk->deskripsi                 = $request->deskripsi;
         $spk->save();
+        $last                           = spk::latest()->first();
+        $nama_barang                    = Order_detail::where('id_order',$request->order)->first();
+        $barangjadi                     = new barangjadi();
+        $barangjadi->spk_id_spk         = $last->id_spk;
+        $barangjadi->nama               = $nama_barang->nama_barang;
+        $barangjadi->save();
         return redirect(route('showallspk'));
     }
     public function storebom(request $request){
         foreach ($request->id_bahan_baku as $key => $val)
         {
-            $bb=bahanbaku::find($request->id_bahan_baku[$key]);
+            $bb  = bahanbaku::find($request->id_bahan_baku[$key]);
             $bom = new bom();
             $bom->barang_jadi_id_barang_jadi    = $request->id_order;
             $bom->bahan_baku_id_bahan_baku      = $request->id_bahan_baku[$key];
@@ -57,10 +67,21 @@ class spkController extends Controller
             $bom->harga_satuan                  = $bb->harga;
             $bom->save();
         }
+        return redirect(route('showaddspk', ['detail_order_id' => $request->detail_order_id]));
         
-        return redirect(route('showallspk'));
     }
-
+    public function getdetailbom(request $request)
+    {
+        // $nama_barang=Order_detail::find($request->id)->first();
+        $bb=bahanbaku::all();
+        $boms=bom::where('barang_jadi_id_barang_jadi',$request->id)->get();
+        return response()->json(['result' => $boms,'bb' => $bb]);
+    }
+    public function checkBOM(request $request)
+    {
+        $check=bom::where('barang_jadi_id_barang_jadi',$request->id)->exists();
+        return response()->json(['result' => $check]);
+    }
     public function checkSPK(request $request)
     {
         $check=spk::where('order_detail_id',$request->id)->exists();

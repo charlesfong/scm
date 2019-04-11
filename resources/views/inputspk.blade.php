@@ -7,7 +7,7 @@
     </tr>
      <tr>
         <td colspan="1">
-           <form class="well form-horizontal" method="post" action="{{ url('/storespk') }}">
+           <form class="well form-horizontal" method="post" action="{{ route('storespk') }}">
             
             {{ csrf_field() }}
               <fieldset>
@@ -81,7 +81,7 @@
                 
                 <div class="clearfix"></div>
             </div>
-            <form id="frmEdit" method="post" action="{{ route('storebom') }}">
+            <form id="frmBOM" method="post" action="#">
                     {{csrf_field()}}
                     <div class="modal-body contact-form2">
                       <input id="modal_id_order" name="id_order" hidden/>
@@ -96,8 +96,8 @@
                     </div>
                     <div class="modal-footer" style="margin-top: 40px;">
 
-                        <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit" id="btn-confirmUpdate" value="-">SAVE</button>
+                        <button class="btn btn-light" type="button"  data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="button" id="btn-submit" value="asds">SAVE</button>
                     </div>
                 </form>
             <div class="modal-footer">
@@ -112,6 +112,11 @@
 @section('script')
 
 <script type="text/javascript">
+    $("#btn-submit").click(function()
+    {
+      $("#frmBOM").attr('action', '{{route('storebom')}}'+ '?detail_order_id='+ $("#modal_id_order").val());
+      $("#frmBOM").submit();
+    });
     var iCnt = 0;
     $("#order_id").change(function(e) {
         $("#modal_id_order").val($(this).val());
@@ -134,10 +139,34 @@
                 alert("Tidak bisa menghapus, minimal bom harus 1");
             }            
         });
-        $("#modal-bom").modal("show");
+        var id = $(this).val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: "{{route('checkBOM')}}",
+            data: {
+                'id': id,
+                _token: '{!! csrf_token() !!}'
+            },
+            success: function (data) {
+                var data = data['result'];
+                if (data==false)
+                {
+                  $("#modal-bom").modal("show");
+                  $("#order_id").css("background-color", "white");
+                }
+                else
+                {
+                  $("#order_id").css("background-color", "green");
+                }
+            },
+        });
+        
     });
 
-
+    
 </script>
 
 @endsection

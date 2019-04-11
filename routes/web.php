@@ -30,6 +30,7 @@ Route::post('storepenggunaanbahanbaku', 'productController@storepenggunaanbahanb
 Route::get('showinputnotabeli', 'productController@showinputnotabeli')->name('showinputnotabeli');
 Route::post('storenotabeli', 'productController@storenotabeli')->name('storenotabeli');
 Route::post('getdetailpermintaanbb', 'productController@getdetailpermintaanbb')->name('getdetailpermintaanbb');
+Route::get('showbarangjadi', 'productController@showbarangjadi')->name('showbarangjadi');
 
 Route::get('supplier', 'supplierController@index')->name('showallsupplier');
 Route::get('inputsupplier', 'supplierController@showinput')->name('showaddsupplier');
@@ -62,7 +63,9 @@ Route::get('inputspk', 'spkController@showinput')->name('showaddspk');
 Route::post('storespk', 'spkController@storespk')->name('storespk');
 Route::post('storebom', 'spkController@storebom')->name('storebom');
 Route::post('checkSPK', 'spkController@checkSPK')->name('checkSPK');
+Route::post('checkBOM', 'spkController@checkBOM')->name('checkBOM');
 Route::get('detailSPK', 'spkController@detailSPK')->name('detailSPK');
+Route::post('getdetailbom', 'spkController@getdetailbom')->name('getdetailbom');
 
 Route::get('barangjadi', 'barangjadiController@index')->name('showallbarangjadi');
 Route::get('inputbarangjadi', 'barangjadiController@showinput')->name('showaddbarangjadi');

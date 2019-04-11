@@ -23,18 +23,18 @@
                        <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input id="tgl_beli" name="tgl_beli" class="form-control" required="true" value="" type="date"></div>
                     </div>
                  </div>
-                 <div class="form-group">
-                    <span>Upload foto mesin</span>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 imgUp" style="margin-top: 0.5em;">
-                    <!-- <input id="gambars" class="form-control" type="file" name="arr_image" multiple> -->
-                    <div class="col-xs-12 col-sm-4 imgUp" style="padding-left: 0.5em;">
-                        <div class="imagePreview"></div>
-                            <label class="btn btn-primary">Upload
-                            <input name="image" id="image" type="file" accept=".jpg,.jpeg,.png" class="uploadFile img" value="Upload Icon" style="width: 0px;height: 0px;overflow: hidden;">
-                            </label>
-                    </div>
-                    </div>
+                <div class="form-group">
+                  <span>Upload foto mesin</span>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 imgUp" style="border: 1px solid #ddd; border-radius: 4px;box-shadow: none; margin-top: 0.5em;">
+                  <!-- <input id="gambars" class="form-control" type="file" name="arr_image" multiple> -->
+                  <div class="col-xs-12 col-sm-4 imgUp" style="padding-left: 0.5em;">
+                      <div class="imagePreview"></div>
+                          <label class="btn btn-primary">Upload
+                          <input name="image" id="image" type="file" accept=".jpg,.jpeg,.png" class="uploadFile img" value="Upload Icon" style="width: 0px;height: 0px;overflow: hidden;">
+                          </label>
+                  </div>
                 </div>
+              
               </fieldset>
               
                 <input type="submit" value="Simpan" name="simpan" class="btn btn-success btn-sm" style="float: right;" />
@@ -53,7 +53,6 @@
 $(function() {
     $(document).on("change",".uploadFile", function()
     {
-        
         var uploadFile = $(this);
         var files = !!this.files ? this.files : [];
         if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
@@ -64,7 +63,6 @@ $(function() {
  
             reader.onloadend = function(){ // set image data as background of div
                 //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                console.log('zxv');
                 uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
             }
         }

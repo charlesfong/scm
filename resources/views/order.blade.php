@@ -97,7 +97,7 @@
                 var data = data['result'];
                 if (data)
                 {
-                  window.location.href = "{{ route('detailSPK') }}" + mergeUrlParam();
+                  window.location.href = "{{ route('showallspk') }}" + mergeUrlParam();
                 }
                 else
                 {

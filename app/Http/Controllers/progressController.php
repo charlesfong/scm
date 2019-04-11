@@ -60,6 +60,17 @@ class progressController extends Controller
         }
     	return view('progressdetail',compact('pros','spks','order_d','pros_d','mesins','karyawans'));
     }
+    public function showprogress(request $request){
+        $spks = spk::all();
+        $pros = Progress::all();
+        $order_d=Order_detail::all();
+        $pros_d=ProgressDetail::where('active',1)->get();
+        if ($request->has('id_spk') && $request->input('id_spk') != "") {
+            $pros = $pros->where('id_spk',$request->id_spk);
+        }
+
+        return view('progress',compact('pros','spks','order_d','pros_d'));
+    }
     public function storeprogress(request $request){
     	$progress=new Progress();
     	$progress->no_dokumen=$request->no_dokumen;
@@ -76,13 +87,7 @@ class progressController extends Controller
     	}
     	
     }
-    public function showprogress(){
-    	$spks = spk::all();
-    	$pros = Progress::all();
-    	$order_d=Order_detail::all();
-        $pros_d=ProgressDetail::all();
-    	return view('progress',compact('pros','spks','order_d','pros_d'));
-    }
+    
     public function detailprogress(request $request){
     	$pros = Progress::find($request->id)->first();
     	return response()->json(['result' => $pros]);
