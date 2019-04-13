@@ -11,22 +11,24 @@ use App\bahanbaku;
 use App\customer;
 use App\order;
 use App\Order_detail;
-use App\karyawan;
+use App\Karyawan;
 use App\spk;
 use App\bom;
-use App\mesin;
+use App\Mesin;
 use App\Progress;
 use App\ProgressDetail;
+use App\Order_status;
 
 class progressController extends Controller
 {
 	public function showinputprogressdetail() {
-        $mesins 	= mesin::where('active',1)->get();
-        $karyawans	= karyawan::where('active',1)->get();
+        $mesins 	= Mesin::where('active',1)->get();
+        $Karyawans	= Karyawan::where('active',1)->get();
         $progress 	= Progress::all();
-        return view('inputprogressdetail',compact('mesins','karyawans','progress'));
+        return view('inputprogressdetail',compact('mesins','Karyawans','progress'));
     }
     public function storeprogressdetail(request $request){
+        // dd($request);
     	$progress=new ProgressDetail();
     	$progress->no_dokumen=$request->no_dokumen;
     	$progress->id_mesin=$request->id_mesin;
@@ -39,26 +41,31 @@ class progressController extends Controller
     	return redirect(route('showdetailprogress', ['no_dokumen' => $progress->no_dokumen]));
     }
     public function showinputprogress() {
+        $progress = Progress::all();
         $spks = spk::all();
+        foreach ($progress as $key => $value) {
+            $spks = $spks->where('id_spk','!=',$value->id_spk);
+        }
         $order_d=Order_detail::all();
         return view('inputprogress',compact('spks','order_d'));
     }
     public function showdetailprogress(request $request){
+        $order_status= Order_status::all();
     	$spks		= spk::all();
     	$pros 		= Progress::find($request->no_dokumen)->first();
     	$order_d 	= Order_detail::all();
-    	$mesins 	= mesin::all();
-        $karyawans	= karyawan::all();
+    	$mesins 	= Mesin::all();
+        $Karyawans	= Karyawan::all();
     	$pros_d = ProgressDetail::where('no_dokumen',$request->no_dokumen)->where('active',1)->get();
         foreach ($pros_d as $proz)
         {
             if ($proz->tanggal_rencana>=$proz->tanggal_progress && $proz->status=="New")
             {
-                $proz->status="In progress";
+                $proz->status="2";
                 $proz->save();
             }
         }
-    	return view('progressdetail',compact('pros','spks','order_d','pros_d','mesins','karyawans'));
+    	return view('progressdetail',compact('pros','spks','order_d','pros_d','mesins','Karyawans','order_status'));
     }
     public function showprogress(request $request){
         $spks = spk::all();
@@ -100,12 +107,11 @@ class progressController extends Controller
     }
     public function confirmprogressdetail(request $request){
         $pros = ProgressDetail::find($request->id);
-        $pros->status = "Done";
+        $pros->status = "4";
         $pros->save();
         return redirect(route('showdetailprogress', ['no_dokumen' => $pros->no_dokumen]));
     }
     public function updateprogress(request $request){
-    	dd($request);
     	$pros = Progress::find($request->no_dokumen);
     	$progress->no_dokumen=$request->no_dokumen;
     	$progress->no_revisi=$request->no_revisi;

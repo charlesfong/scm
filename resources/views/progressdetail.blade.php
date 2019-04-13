@@ -15,10 +15,10 @@
             <th>No</th>
             <th>Karyawan</th>
             <th>Mesin</th>
-            <th>Tanggal Rencana</th>
-            <th>Tanggal Progress</th>
+            <th style="text-align: center;">Tanggal Rencana</th>
+            <th style="text-align: center;">Tanggal Progress</th>
             <th>Hasil</th>
-            <th>Status</th>
+            <th style="text-align: center;">Status</th>
             <th>Keterangan</th>
             <th style="text-align: center;">Confirm/Delete</th>
           </tr>
@@ -26,9 +26,9 @@
         <tbody>
           @foreach($pros_d as $key=>$pro)
           <tr>
-            <td>{{ $key+1 }}</td>
+            <td style="text-align: center;">{{ $key+1 }}</td>
             <td>
-            @foreach($karyawans as $kary)
+            @foreach($Karyawans as $kary)
               @if($kary->id_karyawan==$pro->id_karyawan)
                 {{$kary->nama}}
               @endif
@@ -41,31 +41,51 @@
               @endif
             @endforeach
             </td>
-            <td>{{ $pro->tanggal_rencana}}</td>
-            <td>{{ $pro->tanggal_progress}}</td>
+            <td style="text-align: center;">{{ $pro->tanggal_rencana}}</td>
+            <td style="text-align: center;">{{ $pro->tanggal_progress}}</td>
             <td>{{ $pro->hasil}}</td>
-            <td>
-            @if ($pro->status=="New")
-            <label class="badge badge-secondary">New</label>
-            @elseif ($pro->status=="In progress")
-            <label class="badge badge-warning">In Progress</label>
-            @else
-            <label class="badge badge-success">Done</label>
+            <td style="text-align: center;">
+
+            @if ($pro->status=="1")
+            <label class="badge badge-secondary" style="display:inline-block; width:100px">
+            @foreach ($order_status as $stat)
+                @if ($stat->id==$pro->status)
+                    {{$stat->name}}
+                @endif
+            @endforeach
+            </label>
+            @elseif ($pro->status=="2")
+            <label class="badge badge-warning" style="display:inline-block; width:100px">
+            @foreach ($order_status as $stat)
+                @if ($stat->id==$pro->status)
+                    {{$stat->name}}
+                @endif
+            @endforeach
+            </label>
+            @elseif ($pro->status=="4")
+            <label class="badge badge-success" style="display:inline-block; width:100px">
+            @foreach ($order_status as $stat)
+                @if ($stat->id==$pro->status)
+                    {{$stat->name}}
+                @endif
+            @endforeach    
+            </label>
             @endif
             </td>
-            <td>{{ $pro->keterangan}}</td>
+            <td style="text-align: center;">{{ $pro->keterangan}}</td>
             <td style="text-align: center;">
-                @if ($pro->status=="New")
-                
-                @elseif ($pro->status=="In progress")
+                @if ($pro->status=="2")
                 <button type="button" data-toggle="modal" data-target="#modal-confirm" 
                 class="btn btn-primary btn-sm btn-confirm" value="{{route('confirmprogressdetail', ['id' => $pro->id])}}"><i class="fa fa-check"></i></button>
                 @else
-
+                <button type="button" disabled="disabled" 
+                class="btn btn-primary btn-sm btn-confirm"><i class="fa fa-check"></i></button>
                 @endif
                 </span>&nbsp;
-                @if ($pro->status!="Done")
+                @if ($pro->status!="4")
                 <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('deleteprogressdetail', ['id' => $pro->id])}}"><i class="fa fa-trash-o"></i></button>
+                @else
+                <button type="button" class="btn btn-danger btn-sm btn-delete" disabled="disabled"><i class="fa fa-trash-o"></i></button>
                 @endif
               </span>
             </td>
@@ -165,7 +185,7 @@
                     </select>
                     <select name="id_karyawan" class="form-control">
                       <option disabled="disabled" selected="selected">Pilih Karyawan</option>
-                      @foreach ($karyawans as $karyawan)
+                      @foreach ($Karyawans as $karyawan)
                         <option value="{{$karyawan->id_karyawan}}">
                           {{$karyawan->nama}}
                         </option>

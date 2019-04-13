@@ -15,6 +15,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="{{ asset('../asset/images/favicon.png') }}" />
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <style type="text/css">
   .spinner {
   width: 40px;

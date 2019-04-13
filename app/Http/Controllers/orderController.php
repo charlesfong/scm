@@ -10,20 +10,27 @@ use App\bahanbaku;
 use App\customer;
 use App\order;
 use App\Order_detail;
-use App\karyawan;
+use App\Karyawan;
+use App\Order_status;
+use App\spk;
+use App\barangjadi;
+use App\PermintaanBB;
+use App\PenggunaanBB;
+use App\Notabeli;
 
 class orderController extends Controller
 {
     public function orderlist() {
+        $order_status= Order_status::all();
         $orders = order::all();
         $customers = customer::all();
-        $karyawans = karyawan::all();
-        return view('order',compact('orders','customers','karyawans'));
+        $Karyawans = Karyawan::all();
+        return view('order',compact('orders','customers','Karyawans','order_status'));
     }
     public function showinput() {
     	$customer=customer::all();
-    	$karyawan=karyawan::all();
-        return view('inputorder',compact('customer','karyawan'));
+    	$Karyawan=Karyawan::all();
+        return view('inputorder',compact('customer','Karyawan'));
     }
     public function getdetails(Request $request) {
         $orders = Order_detail::where('id_order',$request->id_order)->get();
@@ -32,7 +39,7 @@ class orderController extends Controller
     public function storeorder(request $request){
         $order = new order();
         $order->customer_id_customer    = $request->customer;
-        $order->karyawan_id_karyawan    = $request->karyawan;
+        $order->Karyawan_id_Karyawan    = $request->karyawan;
         // $order->keterangan              = $request->biaya_transport;
         $order->save();
         $last=order::latest()->first();
@@ -45,7 +52,9 @@ class orderController extends Controller
             $ord->jumlah                = $request->jumlah[$key];
             $ord->satuan                = $request->satuan[$key];
             $ord->harga_satuan          = $request->hargasatuan[$key];
-            $order->biaya_transport     = $request->biaya_transport[$key];
+            $ord->biaya_transport       = $request->biaya_transport[$key];
+            $ord->subtotal             = 
+            ($request->jumlah[$key]*$request->hargasatuan[$key])+$request->biaya_transport[$key];
             $ord->keterangan            = $request->keterangan[$key];
             $ord->save();
         }

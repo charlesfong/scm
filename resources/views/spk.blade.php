@@ -1,11 +1,11 @@
 @extends('layout.layout')
 @section('content')
 <div class="page-header">
-<h3 class="page-title" style="position:fixed;">
+<h3 class="page-title">
   List SPK
 </h3>
 </div>
-<div class="row" style="position:fixed;">
+<div class="row">
   <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
@@ -29,11 +29,11 @@
             <tr>
               <td style="text-align: center;">{{ $spk->id_spk}}</td>
               <td style="text-align: center;">{{ $spk->order_detail_id}}</td>
-              <td style="text-align: center;">{{date('d F, Y', strtotime($spk->tanggal))}}</td>
+              <td style="text-align: center;">{{date('d F, Y', strtotime($spk->created_at))}}</td>
               <td style="text-align: center;">{{ $spk->lama_kerja}} Hari</td>
               <td style="text-align: center;">
-              @if ((date('d', strtotime($spk->tanggal))+$spk->lama_kerja-date('d'))>=0)
-              {{ date('d', strtotime($spk->tanggal))+$spk->lama_kerja-date('d') }} Hari
+              @if ((date('d', strtotime($spk->created_at))+$spk->lama_kerja-date('d'))>=0)
+              {{ date('d', strtotime($spk->created_at))+$spk->lama_kerja-date('d') }} Hari
               @else
               <label class="badge badge-danger">Waktu Habis</label>
               @endif
@@ -42,7 +42,7 @@
               <td style="text-align: center;">{{ $spk->lokasi_tempat_customer}}</td>
               <td style="text-align: center;">{{ $spk->deskripsi}}</td>
               <td style="text-align: center;">
-                  <button type="button" class="btn btn-warning btn-sm btn-bom" id="btn-bom" value="{{$spk->id_spk}}"><i class="fa fa-eye"></i></button>
+                  <button type="button" class="btn btn-warning btn-sm btn-bom" id="btn-bom" value="{{$spk->order_detail_id}}"><i class="fa fa-eye"></i></button>
               </td>
               <td style="text-align: center;">
                   <button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$spk->id_spk}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button>

@@ -12,25 +12,25 @@
       <table class="table">
         <thead>
           <tr>
-            <th>No</th>
-            <th>No Dokumen</th>
-            <th>Tanggal Pembuatan</th>
-            <th>No Revisi</th>
-            <th>Id SPK</th>
-            <th>Progress</th>
+            <th style="text-align: center;">No</th>
+            <th style="text-align: center;">No Dokumen</th>
+            <th style="text-align: center;">Tanggal Pembuatan</th>
+            <th style="text-align: center;">No Revisi</th>
+            <th style="text-align: center;">Id SPK</th>
+            <th style="text-align: center;">Progress</th>
             <th style="text-align: center;">View/Delete</th>
           </tr>
         </thead>
         <tbody>
           @foreach($pros as $key=>$pro)
           <tr>
-            <td>{{ $key+1 }}</td>
-            <td>{{ $pro->no_dokumen}}</td>
-            <td>{{ $pro->tgl_buat}}</td>
-            <td>{{ $pro->no_revisi}}</td>
-            <td>{{ $pro->id_spk}}</td>
-            <td>
-              <div class="progress">
+            <td style="text-align: center;">{{ $key+1 }}</td>
+            <td style="text-align: center;">{{ $pro->no_dokumen}}</td>
+            <td style="text-align: center;">{{ $pro->tgl_buat}}</td>
+            <td style="text-align: center;">{{ $pro->no_revisi}}</td>
+            <td style="text-align: center;">{{ $pro->id_spk}}</td>
+            <td style="text-align: center;">
+              
                 <?php
                   $max = 0;
                   $cur = 0;
@@ -47,8 +47,15 @@
                   }
                   $percentage = ($cur/$max)*100;
                 ?>
-                <div class="progress-bar bg-success" role="progressbar" style="width: {{$percentage}}%"></div>
-              </div>
+                @if($percentage=100)
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                @else
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{$percentage}}%"></div>
+                  </div>
+                @endif
+                
+              
               <!-- <p style="text-align: center;"><?php echo $cur."/".$max;?></p> -->
             </td>
             <td style="text-align: center;">
@@ -167,7 +174,7 @@
         $("#frmDelete").attr("action",  $(this).val());
     });
     $(".btn-view").click(function(e) {
-        window.location.href = "{{ route('showdetailprogress') }}" + "?no_dokumen=" + $(this).val();
+        window.location.href = "{{ route('showdetailprogress') }}?no_dokumen=" + $(this).val();
     });
     $(".btn-edit").click(function (e) {
         var id = $(this).val();

@@ -15,7 +15,7 @@
                     <label class="col-md-1 control-label">Order</label>
                     <div class="col-md-11 inputGroupContainer">
                        <div class="input-group"><span class="input-group-addon"></span>
-                        <select id="order_id" name="order" class="form-control">
+                        <select id="order_id" name="order" class="form-control opz">
                           <option selected="selected" disabled="disabled">Pilih Order</option>
                           @foreach ($orders as $order)
                             <option value="{{$order->id}}">{{$order->kode_barang}}-{{$order->nama_barang}}--Order Id : {{$order->id_order}}</option>
@@ -65,7 +65,6 @@
   </tbody>
 </table>
 @endsection
-
 <div class="modal fade" id="modal-bom" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
@@ -124,12 +123,12 @@
         if (iCnt==0)
         {
             iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><select class="form-control" name="id_bahan_baku[]"><option disabled="disabled">Pilih Bahan Baku</option>@foreach ($bb as $b)<option value="{{$b->id_bahan_baku}}">{{$b->id_bahan_baku}}-{{$b->nama}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHarga : {{$b->harga}}</option>@endforeach</select></td><td><input name="bagian[]" placeholder="Bagian" class="form-control" required="true" value="" type="text"></td><td><input name="ukuran_mentah[]" placeholder="ukuran mentah" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_jadi[]" placeholder="ukuran jadi" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_luasan[]" placeholder="ukuran luasan" class="form-control" required="true" value="" type="number"></td><td><input name="jumlah_bagian[]" placeholder="jumlah bagian" class="form-control" required="true" value="" type="number"></td><td><input name="jumlah_satuan_bahan[]" placeholder="jumlah satuan bahan" class="form-control" required="true" value="" type="number"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><select class="form-control opt" id="opt_'+iCnt+'" name="id_bahan_baku[]"><option disabled="disabled">Pilih Bahan Baku</option>@foreach ($bb as $b)<option value="{{$b->id_bahan_baku}}">{{$b->id_bahan_baku}}-{{$b->nama}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHarga : {{$b->harga}}</option>@endforeach</select></td><td><input name="bagian[]" placeholder="Bagian" class="form-control" required="true" value="" type="text"></td><td><input name="ukuran_mentah[]" placeholder="ukuran mentah" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_jadi[]" placeholder="ukuran jadi" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_luasan[]" placeholder="ukuran luasan" class="form-control" required="true" value="" type="number"></td><td><input name="jumlah_bagian[]" placeholder="jumlah bagian" class="form-control" required="true" value="" type="number"></td><td><input id="qty_'+iCnt+'" name="jumlah_satuan_bahan[]" placeholder="jumlah satuan bahan" class="form-control" required="true" value="" type="number" max="{{$b->stok}}"></td></tr>');
         }
         
             $('#btAdd').click(function() {
                 iCnt = iCnt + 1;
-                $('#list_barang').append('<tr id="'+iCnt+'"><td><select class="form-control" name="id_bahan_baku[]"><option disabled="disabled">Pilih Bahan Baku</option>@foreach ($bb as $b)<option value="{{$b->id_bahan_baku}}">{{$b->id_bahan_baku}}-{{$b->nama}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHarga : {{$b->harga}}</option>@endforeach</select></td><td><input name="bagian[]" placeholder="Bagian" class="form-control" required="true" value="" type="text"></td><td><input name="ukuran_mentah[]" placeholder="ukuran mentah" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_jadi[]" placeholder="ukuran jadi" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_luasan[]" placeholder="ukuran luasan" class="form-control" required="true" value="" type="number"></td><td><input name="jumlah_bagian[]" placeholder="jumlah bagian" class="form-control" required="true" value="" type="number"></td><td><input name="jumlah_satuan_bahan[]" placeholder="jumlah satuan bahan" class="form-control" required="true" value="" type="number"></td></tr>');
+                $('#list_barang').append('<tr id="'+iCnt+'"><td><select class="form-control opt" id="opt_'+iCnt+'" name="id_bahan_baku[]"><option disabled="disabled">Pilih Bahan Baku</option>@foreach ($bb as $b)<option value="{{$b->id_bahan_baku}}">{{$b->id_bahan_baku}}-{{$b->nama}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspHarga : {{$b->harga}}</option>@endforeach</select></td><td><input name="bagian[]" placeholder="Bagian" class="form-control" required="true" value="" type="text"></td><td><input name="ukuran_mentah[]" placeholder="ukuran mentah" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_jadi[]" placeholder="ukuran jadi" class="form-control" required="true" value="" type="number"></td><td><input name="ukuran_luasan[]" placeholder="ukuran luasan" class="form-control" required="true" value="" type="number"></td><td><input name="jumlah_bagian[]" placeholder="jumlah bagian" class="form-control" required="true" value="" type="number"></td><td><input id="qty_'+iCnt+'" name="jumlah_satuan_bahan[]" placeholder="jumlah satuan bahan" class="form-control" required="true" value="" type="number" max="{{$b->stok}}"></td></tr>');
         });
         
         $('#btRemove').click(function() {
@@ -139,6 +138,7 @@
                 alert("Tidak bisa menghapus, minimal bom harus 1");
             }            
         });
+
         var id = $(this).val();
         $.ajax({
             headers: {
@@ -165,8 +165,17 @@
         });
         
     });
-
     
 </script>
-
+<script type="text/javascript">
+    $('#modal-bom').on('shown.bs.modal', function (e) {
+        $('.opt').change(function(){
+            for (var i = 0; i < iCnt; i++) {
+                $("#qty_"+iCnt).attr({
+                 "max" : $("#opt_"+iCnt).val()   
+              });
+            }
+        });
+    });
+</script>
 @endsection

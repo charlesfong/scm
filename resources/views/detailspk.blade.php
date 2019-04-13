@@ -65,7 +65,7 @@
                     <label class="col-md-1 control-label">Nama Karyawan</label>
                     <div class="col-md-11 inputGroupContainer">
                        <div class="input-group"><span class="input-group-addon"></span>
-                        {{$kary->nama}}
+                        {{$Kary->nama}}
                        </div>
                     </div>
                  </div>

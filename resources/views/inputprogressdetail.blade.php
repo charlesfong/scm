@@ -46,7 +46,7 @@
                        <div class="input-group"><span class="input-group-addon"></span>
                         <select name="id_karyawan" class="form-control">
                          <option disabled="disabled" selected="selected">Pilih Karyawan</option>
-                         @foreach ($karyawans as $karyawan)
+                         @foreach ($Karyawans as $karyawan)
                             <option value="{{$karyawan->id_karyawan}}">
                               {{$karyawan->nama}}
                             </option>

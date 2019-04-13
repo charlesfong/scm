@@ -8,7 +8,7 @@ use App\Http\Requests\KaryawanFormRequest;
 use App\Mesin;
 use Illuminate\Support\Facades\File;
 
-class mesinController extends Controller
+class MesinController extends Controller
 {
     
     public function index() {

@@ -46,12 +46,12 @@ Route::post('getdetails_customer', 'customerController@getdetails')->name('getde
 Route::post('update_customer', 'customerController@update')->name('updatecustomer');
 Route::post('/delete_customer/', 'customerController@delete')->name('delete_customer');
 
-Route::get('karyawan', 'karyawanController@index')->name('showallkaryawan');
-Route::get('inputkaryawan', 'karyawanController@showinput')->name('showaddkaryawan');
-Route::post('getdetails_karyawan', 'karyawanController@getdetails')->name('getdetails_karyawan');
-Route::post('storekaryawan', 'karyawanController@storekaryawan')->name('storekaryawan');
-Route::post('update', 'karyawanController@update')->name('updatekaryawan');
-Route::post('/delete_karyawan/', 'karyawanController@delete')->name('delete_karyawan');
+Route::get('karyawan', 'KaryawanController@index')->name('showallkaryawan');
+Route::get('inputkaryawan', 'KaryawanController@showinput')->name('showaddkaryawan');
+Route::post('getdetails_karyawan', 'KaryawanController@getdetails')->name('getdetails_karyawan');
+Route::post('storekaryawan', 'KaryawanController@storekaryawan')->name('storekaryawan');
+Route::post('update', 'KaryawanController@update')->name('updatekaryawan');
+Route::post('/delete_karyawan/', 'KaryawanController@delete')->name('delete_karyawan');
 
 Route::get('order', 'orderController@orderlist')->name('showallorder');
 Route::get('inputorder', 'orderController@showinput')->name('showaddorder');
