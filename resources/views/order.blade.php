@@ -65,13 +65,23 @@
                     @endif
                 @endforeach    
                 </label>
+                @elseif ($order->status=="6")
+                <label class="badge badge-success">
+                @foreach ($order_status as $stat)
+                    @if ($stat->id==$order->status)
+                        {{$stat->name}}
+                    @endif
+                @endforeach    
+                </label>
                 @endif
             </td>
             <td style="text-align: center;"><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
             @if ($order->status=="1")
-                <td style="text-align: center;"><button type="button" class="btn btn-success btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view-delivery" disabled="disabled"><i class="fa fa-eye"></i></button></td>
-            @else
-                <td style="text-align: center;"><button type="button" class="btn btn-success btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view-delivery"><i class="fa fa-eye"></i></button></td>
+                <td style="text-align: center;"><button type="button" class="btn btn-danger btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view-delivery" disabled="disabled"><i class="fa fa-truck"></i></button></td>
+            @elseif ($order->status=="2")
+                <td style="text-align: center;"><button type="button" class="btn btn-danger btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view-delivery" disabled="disabled"><i class="fa fa-truck"></i></button></td>
+            @elseif ($order->status=="6")
+                <td style="text-align: center;"><button type="button" class="btn btn-success btn-sm btn-delivery" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view-delivery"><i class="fa fa-truck"></i></button></td>
             @endif
             
           </tr>
@@ -116,12 +126,18 @@
             <div class="modal-body">
 
                     <p style="text-align: center; color: black;">
-                        <strong id="model-change-status-questions">Delivery</strong>
+                        <strong id="model-change-status-questions">Kirim Order?</strong>
                     </p>
                     
-                    <div id="list_barang">
-
-                    </div>    
+            </div>
+            <div class="modal-footer">
+                <form id="frmDelivery" method="post" action="">
+                    {{csrf_field()}}
+                    <input type="hidden" name="id_order" id="a"> 
+                    <button id="btn-submit-delete-member" type="submit" class="btn btn-primary">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </form>
+                
             </div>
         </div>
         <!-- //Modal content-->
@@ -130,6 +146,11 @@
 @section('script')
 
 <script type="text/javascript">
+    $(".btn-delivery").click(function(e) {
+        $("#frmDelivery").attr("action",  "{{route('setDelivery')}}");
+        $("#a").val($(this).val());
+    });
+
     var detail_order_id="<?php echo (isset($_GET["detail_order_id"]) ? "detail_order_id=".$_GET["detail_order_id"] : "") ?>";
     $(document).on('click', '.button-spk', function(){
         var id = $(this).val();

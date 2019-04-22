@@ -2,7 +2,12 @@
 @section('content')
 <div class="page-header">
 <h3 class="page-title">
-  Daftar Detail Progress Dari Progress Produksi Dengan No Dokumen : {{$pros->no_dokumen}}
+  Daftar Detail Progress Dari Progress Produksi Dengan No Dokumen : 
+  @if (isset($pros_d))
+  {{$pros->no_dokumen}}
+  @else
+  {{$pros}}
+  @endif
 </h3>
 </div>
 <div class="row">
@@ -24,6 +29,7 @@
           </tr>
         </thead>
         <tbody>
+          @if (isset($pros_d))
           @foreach($pros_d as $key=>$pro)
           <tr>
             <td style="text-align: center;">{{ $key+1 }}</td>
@@ -91,10 +97,15 @@
             </td>
           </tr>
           @endforeach
+          @endif
         </tbody>
       </table>
     </div>
+    @if (isset($pros_d))
     <button type="button" id="btn-create"class="btn btn-success btn-lg" value="{{$pros->no_dokumen}}" style="float:right;">Tambah Detail Progress</button>
+    @else
+    <button type="button" id="btn-create"class="btn btn-success btn-lg" value="{{$pros}}" style="float:right;">Tambah Detail Progress</button>
+    @endif
   </div>
 
 </div>
@@ -215,6 +226,7 @@
     });
     $("#btn-create").click(function(e){
         $("#cr_no_dk").val($(this).val());
+        console.log($("#cr_no_dk").val());
         $("#modal-create").modal("show");
     });
     // $(".btn-edit").click(function (e) {

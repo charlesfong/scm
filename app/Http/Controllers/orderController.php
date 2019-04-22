@@ -61,4 +61,10 @@ class orderController extends Controller
     	
         return redirect(route('showallorder'));
     }
+    public function setDelivery(Request $request) {
+        $order = order::find($request->id_order);
+        $order->status=4;
+        $order->save();
+        return redirect(route('showallorder'));
+    }
 }

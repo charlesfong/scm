@@ -34,20 +34,30 @@
                 <?php
                   $max = 0;
                   $cur = 0;
+                  $check = false;
                   foreach ($pros_d as $pro_d)
                   {
                       if ($pro_d->no_dokumen==$pro->no_dokumen)
                       {
+                        $check=true;
                         $max++;
-                        if ($pro_d->status=="Done")
+                        if ($pro_d->status==4)
                         {
                           $cur++;
                         }
                       }
                   }
-                  $percentage = ($cur/$max)*100;
+                  if($cur!=0)
+                  {
+                    $percentage = ($cur/$max)*100;
+                  }
+                  else
+                  {
+                    $percentage = 0;
+                  }
+                  
                 ?>
-                @if($percentage=100)
+                @if($percentage==100)
                   <i class="fa fa-check" aria-hidden="true"></i>
                 @else
                 <div class="progress">
@@ -59,8 +69,14 @@
               <!-- <p style="text-align: center;"><?php echo $cur."/".$max;?></p> -->
             </td>
             <td style="text-align: center;">
+                @if($check)
                 <span><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$pro->no_dokumen}}"><i class="fa fa-eye"></i></button></span>&nbsp;
                 <span>
+                @else
+                <span><button type="button" class="btn btn-secondary btn-sm btn-add-detail" value="{{$pro->no_dokumen}}"><i class="fa fa-eye"></i></button></span>&nbsp;
+                <span>
+                @endif
+                
                 <!-- <button type="button" data-toggle="modal" data-target="#modal-edit" 
                 class="btn btn-primary btn-sm btn-edit" value="{{$pro->no_dokumen}}"><i class="fa fa-edit"></i></button> -->
                 </span>&nbsp;
@@ -175,6 +191,9 @@
     });
     $(".btn-view").click(function(e) {
         window.location.href = "{{ route('showdetailprogress') }}?no_dokumen=" + $(this).val();
+    });
+    $(".btn-add-detail").click(function(e){
+        window.location.href = "{{ route('showdetailprogress_new') }}?no_dokumen=" + $(this).val();
     });
     $(".btn-edit").click(function (e) {
         var id = $(this).val();

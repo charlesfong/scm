@@ -57,6 +57,7 @@ Route::get('order', 'orderController@orderlist')->name('showallorder');
 Route::get('inputorder', 'orderController@showinput')->name('showaddorder');
 Route::post('storeorder', 'orderController@storeorder')->name('storeorder');
 Route::post('getdetails_order', 'orderController@getdetails')->name('getdetails_order');
+Route::post('setDelivery', 'orderController@setDelivery')->name('setDelivery');
 
 Route::get('spk', 'spkController@index')->name('showallspk');
 Route::get('inputspk', 'spkController@showinput')->name('showaddspk');
@@ -88,5 +89,6 @@ Route::post('updateprogress', 'progressController@updateprogress')->name('update
 Route::get('showdetailprogress', 'progressController@showdetailprogress')->name('showdetailprogress');
 Route::post('deleteprogressdetail', 'progressController@deleteprogressdetail')->name('deleteprogressdetail');
 Route::get('showinputprogressdetail', 'progressController@showinputprogressdetail')->name('showinputprogressdetail');
+Route::get('showdetailprogress_new', 'progressController@showdetailprogress_new')->name('showdetailprogress_new');
 Route::post('storeprogressdetail', 'progressController@storeprogressdetail')->name('storeprogressdetail');
 Route::post('confirmprogressdetail', 'progressController@confirmprogressdetail')->name('confirmprogressdetail');
