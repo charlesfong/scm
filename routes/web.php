@@ -14,6 +14,8 @@
 
 Route::get('/', 'indexController@index')->name('index');
 
+Route::get('parentbahanbaku', 'productController@parentbahanbaku')->name('parentbahanbaku');
+Route::post('storebahanbakuparent', 'productController@storebahanbakuparent')->name('storebahanbakuparent');
 Route::get('bahanbaku', 'productController@index')->name('showallbb');
 Route::post('getdetails_bb', 'productController@getdetails')->name('getdetails_bb');
 Route::post('update_bb', 'productController@update')->name('updatebb');

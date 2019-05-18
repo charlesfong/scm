@@ -30,8 +30,8 @@
             <td>{{ $cust->email}}</td>
             <td style="text-align: center;">
                 <span><button type="button" data-toggle="modal" data-target="#modal-edit" 
-                class="btn btn-primary btn-sm btn-edit" value="{{$cust->id_customer}}"><i class="fa fa-edit"></i></button></span>&nbsp;
-                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_customer', ['id_customer' => $cust->id_customer])}}"><i class="fa fa-trash-o"></i></button></span>
+                class="btn btn-outline-primary btn-icon-text btn-sm btn-edit" value="{{$cust->id_customer}}"><i class="fa fa-edit"></i></button></span>&nbsp;
+                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-outline-danger btn-sm btn-delete" value="{{route('delete_customer', ['id_customer' => $cust->id_customer])}}"><i class="fa fa-trash-o"></i></button></span>
             </td>
           </tr>
           @endforeach

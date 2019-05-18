@@ -3,48 +3,35 @@
 <table class="table table-striped">
   <tbody>
     <tr>
-      <td><h4>Ubah Stok Bahan Baku</h4></td>
+      <td><h4>Seluruh Bahan Baku</h4></td>
     </tr>
      <tr>
         <td colspan="1">
+            <input type="button" value="tambah" data-toggle="modal" data-target="#modal-add" class="btn btn-success btn-sm" style="float: right;" />
            <form class="well form-horizontal" method="post" action="{{ url('/storestokbahanbaku') }}">
             
             {{ csrf_field() }}
-              <table id="example1" class="table table-bordered">
+              <table id="" class="table table-bordered">
                 <tr class="attendance-cell " >
                   <th class="attendance-cell " >Kode</th>
                   <th class="attendance-cell " >Nama</th>
-                  <th class="attendance-cell " >Stok</th>
-                  <th class="attendance-cell " >Harga</th>
-                  <th class="attendance-cell " >Supplier</th>
-                  <th class="attendance-cell ">Edit/Delete</th>
+                  <th class="attendance-cell " style="text-align: center;">Edit/Delete</th>
                 </tr>
                 @foreach($bb as $zz => $data)
                 <tr>
                     <td class='attendance-cell'>{{$data['id_bahan_baku']}}</td>
                     <td class='attendance-cell'>{{$data['nama']}}</td>
-                    <td class='attendance-cell' id="quantity" style="width: 200px"><input type="number" name="{{$data['id_bahan_baku']}}" value="{{$data['stok']}}" class="form-control"></td>
-                    <td class='attendance-cell'>{{$data['harga']}}</td>
-                    <td class='attendance-cell'>
-                    @foreach ($supplierz as $supp)
-                    @if ($supp->id_supplier==$data['supplier_id_supplier'])
-                    {{$supp->nama}}
-                    @endif
-                    @endforeach
-                    </td>
                     <td class='attendance-cell' style="text-align: center;">
                       <span><button type="button" data-toggle="modal" data-target="#modal-edit" 
                       class="btn btn-primary btn-sm btn-edit" value="{{$data['id_bahan_baku']}}"><i class="fa fa-edit"></i></button></span>&nbsp;
                       <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_bb', ['id_bahan_baku' => $data['id_bahan_baku']])}}"><i class="fa fa-trash-o"></i></button></span>
                   </td>
                 @endforeach
-
                 <tbody>
                 </tfoot>
               </table>
-              
+
                 <input type="submit" value="simpan" class="btn btn-success btn-sm" style="float: right;" />
-              
            </form>
         </td>                
      </tr>
@@ -92,7 +79,7 @@
             <div class="modal-body">
 
                     <p style="text-align: center; color: black;">
-                        <strong id="model-change-status-questions">Edit Data Bahan Baku</strong>
+                        <strong id="model-change-status-questions">Ubah Nama Bahan Baku</strong>
                     </p>
                 
                 <div class="clearfix"></div>
@@ -105,13 +92,6 @@
                           <span>Nama Bahan Baku</span>
                           <input id="edit-id" name="id_bahan_baku" hidden/>
                           <input id="edit-nama" type="text" name="nama" class="form-control"  value="" required>
-                          <span class="invalid-feedback">
-                              <strong></strong>
-                          </span>
-                      </div>
-                      <div class="form-group">
-                          <span>Harga</span>
-                          <input id="edit-harga" type="number" name="harga" class="form-control"  value="" required>
                           <span class="invalid-feedback">
                               <strong></strong>
                           </span>
@@ -131,6 +111,47 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal-add" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content" style="top: 30vh;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                    <p style="text-align: center; color: black;">
+                        <strong id="model-change-status-questions">Tambah Bahan Baku</strong>
+                    </p>
+                
+                <div class="clearfix"></div>
+            </div>
+            <form id="frmEdit" method="post" action="{{ route('storebahanbakuparent') }}">
+                    {{csrf_field()}}
+                    <div class="modal-body contact-form2">
+
+                      <div class="form-group">
+                          <span>Nama Bahan Baku</span>
+                          <input id="edit-id" name="id_bahan_baku" hidden/>
+                          <input id="edit-nama" type="text" name="nama" class="form-control"  value="" required>
+                          <span class="invalid-feedback">
+                              <strong></strong>
+                          </span>
+                      </div>
+                    </div>
+                    <div class="modal-footer" style="margin-top: 40px;">
+                        <button class="btn btn-light" type="button" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit" id="btn-confirmUpdate" value="-">SAVE</button>
+                    </div>
+                </form>
+            <div class="modal-footer">
+                
+                
+            </div>
+        </div>
+        <!-- //Modal content-->
+    </div>
+</div>
 @section('script')
 <script src="{{ asset('js/admin/tags-input.js') }}"></script>
 <script src="{{ asset('js/admin/metisMenu.min.js') }}"></script>

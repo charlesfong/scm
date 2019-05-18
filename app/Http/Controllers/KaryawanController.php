@@ -41,6 +41,17 @@ class KaryawanController extends Controller
         
     }
 
+    public function storekaryawan(request $request)
+    {
+        $kr = new Karyawan();
+        $kr->nama = $request->nama;
+        $kr->jabatan = $request->jabatan;
+        $kr->alamat = $request->alamat;
+        $kr->telepon = $request->no_telp;
+        $kr->save();
+        return redirect(route('showallkaryawan'));
+    }
+    
     public function show($id)
     {
         $karyawan = Karyawan::whereId($id)->firstOrFail();

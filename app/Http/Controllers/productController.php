@@ -12,6 +12,7 @@ use App\barangjadi;
 use App\PermintaanBB;
 use App\PenggunaanBB;
 use App\Notabeli;
+use App\bahanbakudetail;
 
 class productController extends Controller
 {
@@ -19,22 +20,31 @@ class productController extends Controller
         $bb=bahanbaku::where('active',1)->get();
         return view('product',compact('bb'));
     }
+    public function parentbahanbaku() {
+         $bb=bahanbaku::where('active',1)->get();
+        return view('kategoribahanbaku',compact('bb'));
+    }
     public function showaddbahanbaku() {
     	$supplierz = supplier::all();
-        return view('inputbahanbaku',compact('supplierz'));
+        $bbs=bahanbaku::where('active',1)->get();
+        return view('inputbahanbaku',compact('supplierz','bbs'));
     }
     public function storebahanbaku(request $request) {
-    	$bb = new bahanbaku();
+    	$bb = new bahanbakudetail();
         $bb->nama = $request->namabb;
         $bb->harga = $request->hargabb;
-        $bb->supplier_id_supplier = $request->id_supz;
+        $bb->id_bahan_baku = $request->id_bb;
+        $bb->satuan = $request->satuan;
+        $bb->description = $request->description;
+        $bb->id_supplier = $request->id_supz;
         $bb->save();
         return view('product');
     }
     public function showinputstokbahanbaku() {
+        $bb_d = bahanbakudetail::where('active',1)->get();
     	$bb = bahanbaku::where('active',1)->get();
     	$supplierz = supplier::all();
-        return view('inputstokbahanbaku',compact('bb','supplierz'));
+        return view('bahanbaku',compact('bb','supplierz','bb_d'));
     }
     public function storestokbahanbaku(request $request) {
         $array_id="";
@@ -144,6 +154,16 @@ class productController extends Controller
     public function showbarangjadi(request $request)
     {
         $barangjadi = barangjadi::all();
-        return view('barangjadi',compact('barangjadi'));
+        $spks = spk::all();
+        return view('barangjadi',compact('barangjadi','spks'));
     }
+
+    public function storebahanbakuparent(request $request)
+    {
+        $bb = new bahanbaku();
+        $bb->nama = $request->nama;
+        $bb->save();
+        return redirect(route('inputstokbb'));
+    }
+    
 }

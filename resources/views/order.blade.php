@@ -75,7 +75,7 @@
                 </label>
                 @endif
             </td>
-            <td style="text-align: center;"><button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
+            <td style="text-align: center;"><button type="button" class="btn btn-outline-secondary btn-icon-text btn-sm btn-view btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button></td>
             @if ($order->status=="1")
                 <td style="text-align: center;"><button type="button" class="btn btn-danger btn-sm btn-view" value="{{$order->id_order}}" data-toggle="modal" data-target="#modal-view-delivery" disabled="disabled"><i class="fa fa-truck"></i></button></td>
             @elseif ($order->status=="2")
@@ -200,10 +200,10 @@
                   $('#list_barang').html('<th style="vertical-align: middle;">Kode Barang</th><th style="vertical-align: middle;">Nama Barang</th><th style="vertical-align: middle;">Jumlah</th><th style="vertical-align: middle;">Satuan</th><th style="vertical-align: middle;">Harga Satuan</th><th style="vertical-align: middle;">Biaya Transport</th><th style="vertical-align: middle;">Subtotal</th><th style="vertical-align: middle;">Keterangan</th><th style="text-align: center;">View SPK</th>');
                 for (var i = 0; i < data.length; i++) {
                     total+=data[i]['subtotal'];
-                    var sub = (data[i]['subtotal']).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                    var sub = parseFloat(data[i]['subtotal']).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                   $('#list_barang').append('<tr><td><input class="form-control" value="'+data[i]['kode_barang']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['nama_barang']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['jumlah']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['satuan']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['harga_satuan']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['biaya_transport']+'" type="text" disabled="disabled"></td><td><input class="form-control" value="Rp. '+sub+'" type="text" disabled="disabled"></td><td><input class="form-control" value="'+data[i]['keterangan']+'" type="text" disabled="disabled"></td><td style="text-align: center;"><button type="button" class="btn btn-secondary btn-sm btn-view button-spk" value="'+data[i]['id']+'"><i class="fa fa-eye button-spk"></i></button></td></tr>');
                 }
-                $('#list_barang').append('<br><tr style="text-align:right;"><td colspan="9">Total : Rp. '+(total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td></tr>')
+                $('#list_barang').append('<br><tr style="text-align:right;"><td colspan="9">Total : Rp. '+parseFloat(total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+'</td></tr>')
             },
         });
     });

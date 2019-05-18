@@ -17,7 +17,9 @@ class barangjadiController extends Controller
 {
     public function index() {
         $bjadi = barangjadi::all();
-        return view('barangjadi',compact('bjadi'));
+        $spks= spk::all();
+        dd($bjadi);
+        return view('barangjadi',compact('bjadi','spks'));
     }
     public function showinput() {
     	$bjadi = barangjadi::all();

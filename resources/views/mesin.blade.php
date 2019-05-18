@@ -9,26 +9,28 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <table class="table">
+      <table class="table table-striped">
         <thead>
           <tr>
+            <th>No</th>
             <th>ID</th>
             <th>Nama</th>
             <th>Tanggal Beli</th>
-            <th>View/Edit/Delete</th>
+            <th style="text-align: center;">View/Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($mesins as $msn)
+          @foreach($mesins as $key => $msn)
           <tr>
+            <td>{{ $key+1 }}</td>
             <td>{{ $msn->id_mesin }}</td>
             <td>{{ $msn->nama }}</td>
             <td>{{ $msn->tanggal_beli }}</td>
             <td style="text-align: center;">
-                <button type="button" class="btn btn-secondary btn-sm btn-view" value="{{$msn->id_mesin}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button>
+                <button type="button" class="btn btn-outline-secondary btn-icon-text btn-sm btn-view" value="{{$msn->id_mesin}}" data-toggle="modal" data-target="#modal-view"><i class="fa fa-eye"></i></button>
                 <span><button type="button" data-toggle="modal" data-target="#modal-edit" 
-                class="btn btn-primary btn-sm btn-edit" value="{{$msn->id_mesin}}"><i class="fa fa-edit"></i></button></span>&nbsp;
-                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-danger btn-sm btn-delete" value="{{route('delete_mesin', ['id_mesin' => $msn->id_mesin])}}"><i class="fa fa-trash-o"></i></button></span>
+                class="btn btn-outline-primary btn-icon-text btn-sm btn-edit" value="{{$msn->id_mesin}}"><i class="fa fa-edit"></i></button></span>&nbsp;
+                <button type="button" data-toggle="modal" data-target="#modal-delete" class="btn btn-outline-danger btn-sm btn-delete" value="{{route('delete_mesin', ['id_mesin' => $msn->id_mesin])}}"><i class="fa fa-trash-o"></i></button></span>
             </td>
           </tr>
           @endforeach
@@ -46,7 +48,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                    <div class="col-xs-12 col-sm-12 imgUp" style="padding-left: 0.5em;">
+                    <div class="col-xs-12 col-sm-12 imgUp" style="padding-left: 2.5em;">
                         <div class="imagePreview"></div>
                     </div>
                 <div class="clearfix"></div>
@@ -159,8 +161,17 @@
                 var data = data['result'];
                 var image = data['image'];
                 // var image = data['image'].replace(new RegExp(' ', 'g'), "%20");
-                var urlNya = "<?php echo asset('sources/mesin/'); ?>";
-                $(".imgUp").find('.imagePreview').css("background-image", "url("+urlNya+"/"+image+")");
+                if (image!=null && image!="")
+                {
+                    var urlNya = "<?php echo asset('sources/mesin/'); ?>";
+                    $(".imgUp").find('.imagePreview').css({"width": "100%", "height": "100%"});
+                    $(".imgUp").find('.imagePreview').css("background-image", "url("+urlNya+"/"+image+")");
+                }
+                else
+                {
+                    $(".imgUp").find('.imagePreview').css({"background-image": "url('sources/etc/blank.jpg')", "width": "250px", "height": "250px"});
+                }
+                
             },
         });
     });

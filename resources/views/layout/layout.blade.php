@@ -13,6 +13,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('../asset/css/style.css') }}">
   <!-- endinject -->
+  @yield('css')
   <link rel="shortcut icon" href="{{ asset('../asset/images/favicon.png') }}" />
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -33,10 +34,15 @@
     background-size: cover;
     background-repeat:no-repeat;
     display: inline-block;
+    text-align: center;
   }
   .imgUp
   {
     margin-bottom:15px;
+  }
+  #tablez
+  {
+    
   }
   .double-bounce1, .double-bounce2 {
     width: 100%;

@@ -10,7 +10,7 @@
       </a>
     </li>
     
-    <div style="position:fixed;">
+    <div>
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#ui-basic7" aria-expanded="false" aria-controls="ui-basic">
         <span class="menu-title">Order</span>
@@ -122,18 +122,28 @@
               <i class="mdi menu-icon"></i>
             </a>
           </li>
+          
           <li class="nav-item">
-            <a class="nav-link" href="{{route('inputbb')}}">
+            <a class="nav-link" href="{{route('parentbahanbaku')}}">
               <!-- <span class="menu-title"> -->
-              Tambah Bahan Baku
+              Seluruh Kategori Bahan Baku
+              <!-- </span> -->
+              <i class="mdi menu-icon"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('inputstokbb')}}">
+              <!-- <span class="menu-title"> -->
+              Seluruh Bahan Baku
               <!-- </span> -->
               <i class="mdi menu-icon"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('inputstokbb')}}">
+            <a class="nav-link" href="{{route('inputbb')}}">
               <!-- <span class="menu-title"> -->
-              Seluruh Bahan Baku
+              Tambah Bahan Baku
               <!-- </span> -->
               <i class="mdi menu-icon"></i>
             </a>

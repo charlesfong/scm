@@ -46,6 +46,13 @@ class indexController extends Controller
     		}
     		
     	}
-    	return view('index');
+
+        $orders = order::all();
+        $custs = customer::all();
+        $bb = bahanbaku::all()->where('active',1)->sortBy('stok')->first();
+        $supps = supplier::all();
+        $orderan_terdekat = order::all()->sortBy('created_at')->first();
+        $order_d = Order_detail::where('id_order',$orderan_terdekat->id_order)->get();
+    	return view('index',compact('orders','custs','bb','supps','orderan_terdekat','order_d'));
     }
 }
